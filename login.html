@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="login.css">
+  <title>Qoqa</title>
+</head>
+<body>
+  <div class="container">
+    <form action="/action_page.php">
+      <div class="row">
+        <h2 style="text-align:center">Login with Social Media</h2>
+
+
+        <div class="col">
+          <a href="#" class="fb btn">
+            <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+          </a>
+          <a href="#" class="twitter btn">
+            <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+          </a>
+          <a href="#" class="google btn">
+            <i class="fa fa-google fa-fw"></i> Login with Gmail
+          </a>
+        </div>
+
+
+      </div>
+    </form>
+  </div>
+
+  <div class="bottom-container">
+    <div class="row">
+      <div class="col">
+        <a href="#" style="color:white" class="btn">Sign up</a>
+      </div>
+      <div class="col">
+        <a href="#" style="color:white" class="btn">Forgot password?</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBN0uCZbZuD2HXN7vALo3fywZeU_q-_Ydw",
+    authDomain: "qoqa-f7261.firebaseapp.com",
+    databaseURL: "https://qoqa-f7261.firebaseio.com",
+    projectId: "qoqa-f7261",
+    storageBucket: "qoqa-f7261.appspot.com",
+    messagingSenderId: "556959236574"
+  };
+  firebase.initializeApp(config);
+</script>
