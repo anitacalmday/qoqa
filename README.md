@@ -6,4 +6,4 @@ Software Engineering Immersion Product
 
 1. `sudo npm install -g @angular/cli`
 2. `cd qoqa/qoqa`
-3. `ng serve` the app will be running locally at http://localhost:4200/
+3. `ng serve` the app will be running locally at http://localhost:4200/. If error run `npm update`.
