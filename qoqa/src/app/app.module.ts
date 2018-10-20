@@ -10,11 +10,25 @@ import { AppRoutingModule } from './app-routing';
 import { AppComponent } from './app.component';
 
 import { AuthService } from './services/auth.service';
+import { HomeComponent } from './home/home.component';
+import { CreateEventComponent } from './create-event/create-event.component';
+import { EventsComponent } from './events/events.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SavedEventsComponent } from './saved-events/saved-events.component';
+import { InvitationsComponent } from './invitations/invitations.component';
+import { CreateQoqaComponent } from './create-qoqa/create-qoqa.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    CreateEventComponent,
+    EventsComponent,
+    ProfileComponent,
+    SavedEventsComponent,
+    InvitationsComponent,
+    CreateQoqaComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
