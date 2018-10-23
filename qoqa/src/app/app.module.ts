@@ -6,10 +6,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login.component';
 import { AppRoutingModule } from './app-routing';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AuthService } from './services/auth.service';
 
 import { AppComponent } from './app.component';
-
-import { AuthService } from './services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { EventsComponent } from './events/events.component';
@@ -17,6 +17,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { SavedEventsComponent } from './saved-events/saved-events.component';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { CreateQoqaComponent } from './create-qoqa/create-qoqa.component';
+
+
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { CreateQoqaComponent } from './create-qoqa/create-qoqa.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     AppRoutingModule,
     BrowserModule
   ],
