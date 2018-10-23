@@ -8,6 +8,11 @@ export class Event {
   title: string;
 }
 
+export class User {
+  userType: string;
+
+}
+
 // export const EVENTS: Event[] = [
 //   { title: 'Mr. Nice' },
 //   { title: 'Narco' },
@@ -30,6 +35,7 @@ export class AppComponent {
 
   constructor(db: AngularFireDatabase, private authService: AuthService, private router: Router) {
     this.events= db.list('/events');
+    console.log(db.list('/users', ref => ref.limitToFirst(1)));
     //this.AddEvent("Shumba");
   }
 
@@ -50,7 +56,15 @@ export class AppComponent {
   signInWithGoogle() {
     this.authService.GoogleSignIn()
       .then((res) => {
-        //this.router.navigate(['dashboard'])
+        //console.log(res.user.email);
+        this.authService.setUserDetails(res.user);
+        console.log(this.authService.getUserDetails());
+        if (this.authService.getUserDetails().metadata.creationTime == this.authService.getUserDetails().metadata.lastSignInTime) {
+          // Navigate to new user profile page
+        } else {
+          this.router.navigate(['home'])
+        }
+        // console.log(this.authService.getUserDetails());
       })
       .catch((err) => console.log(err));
   }
