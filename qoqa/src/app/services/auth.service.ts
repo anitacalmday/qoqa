@@ -33,9 +33,9 @@ export class AuthService {
     return this.userDetails;
   }
 
-  setUserDetails(userDetails: firebase.user) {
-    this.userDetails = userDetails;
-  }
+  // setUserDetails(userDetails: firebase.user) {
+  //   this.userDetails = userDetails;
+  // }
 
   logout() {
     this.af.auth.signOut()

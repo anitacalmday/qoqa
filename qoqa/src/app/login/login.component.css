@@ -122,3 +122,17 @@ input[type=submit]:hover {
     text-align: center;
   }
 }
+
+
+
+/* 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+    align-content: center;
+}
+
+
+h1{
+    text-align: center
+} */

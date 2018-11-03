@@ -1,16 +1,22 @@
-<div style="text-align:center">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  </head>
+  <body>
+      <app-main-nav></app-main-nav>
   <h1>
     Welcome to Qoqa!
   </h1>
-  <div class="container">
-      <div class="row">
-        <h2 style="text-align:center">Login with Social Media</h2>
-        <div class="col">
-        </div>
 
-      </div>
-  </div>
-        <p href="#" style="color:white" class="google btn" (click)="signInWithGoogle()">Google</p>
-        <a href="#" style="color:white" class="fb btn" (click)="signInWithFacebook()">Facebook</a>
-      </div>
+  <div class="container">
+      <div class="login">
+        <h2>Login with Social Media</h2>
+        </div>
+        <button color="primary" mat-raised-button class="google btn" (click)="signInWithGoogle()">Google</button>
+        <button mat-raised-button class="fb btn" (click)="signInWithFacebook()">Facebook</button>
+    </div>
+    </body>
+
 <router-outlet></router-outlet>
+</html>
