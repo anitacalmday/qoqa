@@ -6,12 +6,12 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import { LoginComponent } from './login.component';
 import { AppRoutingModule } from './app-routing';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AuthService } from './services/auth.service';
 
 import { AppComponent } from './app.component';
 
-import { AuthService } from './services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { EventsComponent } from './events/events.component';
@@ -19,8 +19,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { SavedEventsComponent } from './saved-events/saved-events.component';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { CreateQoqaComponent } from './create-qoqa/create-qoqa.component';
+
 import { AppMainNavComponent } from './app-main-nav/app-main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+
+import { LoginComponent } from './login/login.component';
+
+
 
 @NgModule({
   declarations: [
@@ -36,12 +41,13 @@ import { LayoutModule } from '@angular/cdk/layout';
     AppMainNavComponent
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     LayoutModule,
     MatToolbarModule,
