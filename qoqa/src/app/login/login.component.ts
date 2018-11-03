@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
       .then((res) => {
         // console.log(res.user);
 
-        this.authService.setUserDetails(res.user);
+        // this.authService.setUserDetails(res.user);
 
         console.log(this.authService.getUserDetails());
         if (this.authService.getUserDetails().metadata.creationTime == this.authService.getUserDetails().metadata.lastSignInTime) {
