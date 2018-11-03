@@ -4,7 +4,6 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import { LoginComponent } from './login.component';
 import { AppRoutingModule } from './app-routing';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AuthService } from './services/auth.service';
@@ -17,6 +16,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { SavedEventsComponent } from './saved-events/saved-events.component';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { CreateQoqaComponent } from './create-qoqa/create-qoqa.component';
+import { LoginComponent } from './login/login.component';
+
 
 
 

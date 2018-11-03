@@ -36,6 +36,7 @@ export class AuthService {
   setUserDetails(userDetails: firebase.user) {
     this.userDetails = userDetails;
   }
+
   logout() {
     this.af.auth.signOut()
       .then((res) => this.router.navigate(['/']));
