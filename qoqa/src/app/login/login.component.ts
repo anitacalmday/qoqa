@@ -72,6 +72,6 @@ export class LoginComponent implements OnInit {
         }
         // console.log(this.authService.getUserDetails());
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err + "ERROR"));
   }
 }
