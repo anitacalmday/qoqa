@@ -19,7 +19,7 @@ export class AppMainNavComponent implements OnInit {
   ngOnInit() {
     console.log("calling ngOnInit in login app-main-nav.ts")
 
-    this.user = this.authService.getTestValue()
+    this.user = true // this.authService.getTestValue()
     // this.user = this.authService.getUserDetails()
 
 
@@ -28,11 +28,11 @@ export class AppMainNavComponent implements OnInit {
     // !!! Uncomment the if statement to turn on the authorization features
     // !!! They are currently commented for debugging reasons.
 
-    // if (!this.user) {
-    //   this.router.navigate(['login'])
-    // }
+    if (!this.user) {
+      this.router.navigate(['login'])
+    }
     
-    console.log(this.user)
+    console.log("user: " + this.user)
   }
 
 

@@ -62,14 +62,19 @@ export class LoginComponent implements OnInit {
         console.log(res);
 
         // this.authService.setUserDetails(res.user);
-
+        this.authService.turnTestValueOn() // This is also test code
         console.log(this.authService.getUserDetails());
-        if (this.authService.getUserDetails().metadata.creationTime == this.authService.getUserDetails().metadata.lastSignInTime) {
-          // Navigate to new user profile page
-          this.router.navigate(['profile'])
-        } else {
-          this.router.navigate(['home'])
-        }
+
+        this.router.navigate(['home'])
+        // The block below throws an error when we access metadata
+        // Todo(shumba): find new way to determine new user. 
+        // Just check our database maybe
+        // if (this.authService.getUserDetails().metadata.creationTime == this.authService.getUserDetails().metadata.lastSignInTime) {
+        //   // Navigate to new user profile page
+        //   this.router.navigate(['profile'])
+        // } else {
+        //   this.router.navigate(['home'])
+        // }
         // console.log(this.authService.getUserDetails());
       })
       .catch((err) => console.log(err + "ERROR"));
