@@ -11,6 +11,12 @@
 </iframe>
 
   <body>
+    <ul>
+      <li *ngFor="let event of events">
+        <span>{{event.title}}</span>
+      </li>
+    </ul>
+
     <table class="table">
       <thead>
         <tr>
