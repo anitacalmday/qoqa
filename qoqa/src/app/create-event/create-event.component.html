@@ -1,3 +1,15 @@
+<style media="screen">
+  .container {
+    padding: 15px;
+  }
+  .btn
+  {
+    background-color: #ef6c00;
+    float: center;
+  }
+</style>
+
+
 <div class="container">
   <form>
 
@@ -21,11 +33,11 @@
     </div>
     <div class="form-group">
       <label for="EventImage">Event Image</label>
-      <input type="file" class="form-control" id="EventImage" accept="image/png, image/jpeg">
+      <input type="file" class="form-control-file" id="EventImage" accept="image/png, image/jpeg">
     </div>
     <div class="form-group">
       <label for="eventDescription">Event Description</label>
-      <input type="textarea" class="form-control" id="eventDescription">
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
     <div class="form-group">
       <label for="eventOrg">Organizer Name</label>
@@ -33,7 +45,8 @@
     </div>
     <div class="form-group">
       <label for="eventOrgDesc">Organizer Description</label>
-      <input type="textarea" class="form-control" id="eventOrganizerDescription">
+      <textarea class="form-control" id="eventOrgDescription" rows="3"></textarea>
     </div>
+     <button type="submit" class="btn btn-primary">Make Your Event Live</button>
   </form>
 </div>
