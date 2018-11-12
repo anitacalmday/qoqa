@@ -1,57 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  </head>
+<style media="screen">
 
-  <body>
+@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+
+.omb_login .omb_authTitle {
+    text-align: center;
+  line-height: 300%;
+}
+h1{
+  text-align: center;
+  padding-top: 150px;
+}
+h5{
+  text-align: center;
+
+}
+.omb_login .omb_socialButtons a {
+  color: white; // In yourUse @body-bg
+  opacity:0.9;
+}
+.omb_login .omb_socialButtons a:hover {
+    color: white;
+  opacity:1;
+}
+.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
+.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
+.omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
 
 
-  <div class="container">
+.omb_login .omb_loginOr {
+  position: relative;
+  font-size: 1.5em;
+  color: #aaa;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+.omb_login .omb_loginOr .omb_hrOr {
+  background-color: #cdcdcd;
+  height: 1px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+.omb_login .omb_loginOr .omb_spanOr {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: -0.6em;
+  margin-left: -1.5em;
+  background-color: white;
+  width: 3em;
+  text-align: center;
+}
 
-      <h1>
-        Welcome to Qoqa!
-      </h1>
-      <div class="row signUpRow">
-        <div class="col-md-12">
-          <form class="form-signin signIn mg-btm" >
-            <h3 class="heading-desc">Login to your dashboard</h3>
-            <div class="social-box">
-              <div class="row">
-    <div class="col-md-12">
+.omb_login .omb_loginForm .input-group.i {
+  width: 2em;
+}
+.omb_login .omb_loginForm  .help-block {
+    color: red;
+}
 
 
-     <p class="btn btn-block btn-social btn-lg btn-facebook" (click)="signInWithFacebook()"><i class="fa fa-facebook"></i> | Connect with Facebook</p>
+@media (min-width: 768px) {
+    .omb_login .omb_forgotPwd {
+        text-align: right;
+    margin-top:10px;
+  }
+}
 
-    </div>
+</style>
+
+
+<div class="container">
+  <h1>Welcome to Qoqa</h1>
+  <h5>An online platform to host and gather information from and about events.</h5>
+  <div class="omb_login">
+     <h3 class="omb_authTitle">Login to your Dashboard</h3>
+   <div class="row omb_row-sm-offset-3 omb_socialButtons">
+         <div class="col-xs-4 col-sm-2">
+           <a href="#" class="btn btn-lg btn-block omb_btn-facebook" (click)="signInWithFacebook()">
+             <i class="fa fa-facebook visible-xs"></i>
+             <span class="hidden-xs">Facebook</span>
+           </a>
+         </div>
+         <div class="col-xs-4 col-sm-2">
+           <a href="#" class="btn btn-lg btn-block omb_btn-twitter">
+             <i class="fa fa-twitter visible-xs"></i>
+             <span class="hidden-xs">Twitter</span>
+           </a>
+         </div>
+         <div class="col-xs-4 col-sm-2">
+           <a href="#" class="btn btn-lg btn-block omb_btn-google" (click)="signInWithGoogle()">
+             <i class="fa fa-google-plus visible-xs"></i>
+             <span class="hidden-xs">Google</span>
+           </a>
+         </div>
+   </div>
+
 </div>
-<div class="row">
-    <div class="col-md-12">
-      <p class="btn btn-block btn-social btn-lg btn-google-plus" (click)="signInWithGoogle()" name="button"> <i class="fa fa-google"></i> | Connect with Google</p>
-
-
-    </div>
-</div>
-
-            </div>
-          </form>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
-
-    </body>
 
 <router-outlet></router-outlet>
-</html>
