@@ -6,14 +6,6 @@ import { AngularFireList } from 'angularfire2/database';
 import { MiddlewareService } from '../services/middleware.service';
 import { User } from '../data/user';
 
-
-// export const EVENTS: Event[] = [
-//   { title: 'Mr. Nice' },
-//   { title: 'Narco' },
-//   { title: 'Bombasto' },
-//   { title: 'Celeritas' }
-// ];
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,10 +13,6 @@ import { User } from '../data/user';
 })
 export class LoginComponent implements OnInit {
   title = 'qoqa';
-
-  //events = EVENTS;
-  // private eventCounter = 0;
-  // public events:AngularFireList<Event[]>;
 
   ngOnInit() {
     console.log("calling ngOnInit in login component.ts")
@@ -46,6 +34,7 @@ export class LoginComponent implements OnInit {
       .then((res) => {
         if (res != null) {
           this.data.IsNewUser(res.user.uid, (isNewUser) => {
+            console.log('response' + res)
             console.log('isNewUser' + isNewUser)
             if (isNewUser) {
               let newUser = new User()
