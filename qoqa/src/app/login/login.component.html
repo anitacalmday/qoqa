@@ -1,57 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  </head>
-
-  <body>
 
 
-  <div class="container">
-
-      <h1>
-        Welcome to Qoqa!
-      </h1>
-      <div class="row signUpRow">
-        <div class="col-md-12">
-          <form class="form-signin signIn mg-btm" >
-            <h3 class="heading-desc">Login to your dashboard</h3>
-            <div class="social-box">
-              <div class="row">
-    <div class="col-md-12">
 
 
-     <p class="btn btn-block btn-social btn-lg btn-facebook" (click)="signInWithFacebook()"><i class="fa fa-facebook"></i> | Connect with Facebook</p>
 
-    </div>
+
+<div class="container">
+  <h1>Welcome to Qoqa</h1>
+  <h5>An online platform to host and gather information from and about events.</h5>
+  <div class="omb_login">
+     <h3 class="omb_authTitle">Login to your Dashboard</h3>
+
+
+
+   <div class="row omb_row-sm-offset-3 omb_socialButtons">
+         <div class="col-xs-4 col-sm-2">
+           <a class="btn btn-lg btn-block omb_btn-facebook" (click)="signInWithFacebook()">
+             <i class="fa fa-facebook visible-xs"></i>
+             <span class="hidden-xs">Facebook</span>
+           </a>
+         </div>
+
+
+
+
+         <div class="col-xs-4 col-sm-2">
+           <a class="btn btn-lg btn-block omb_btn-twitter">
+             <i class="fa fa-twitter visible-xs"></i>
+             <span class="hidden-xs">Twitter</span>
+           </a>
+         </div>
+
+
+
+         <div class="col-xs-4 col-sm-2">
+           <a class="btn btn-lg btn-block omb_btn-google" (click)="signInWithGoogle()">
+             <i class="fa fa-google-plus visible-xs"></i>
+             <span class="hidden-xs">Google</span>
+           </a>
+         </div>
+   </div>
+
 </div>
-<div class="row">
-    <div class="col-md-12">
-      <p class="btn btn-block btn-social btn-lg btn-google-plus" (click)="signInWithGoogle()" name="button"> <i class="fa fa-google"></i> | Connect with Google</p>
-
-
-    </div>
-</div>
-
-            </div>
-          </form>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
-
-    </body>
 
 <router-outlet></router-outlet>
-</html>

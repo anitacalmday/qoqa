@@ -1,3 +1,52 @@
-<p>
-  create-event works!
-</p>
+<style media="screen">
+  .container {
+    padding: 15px;
+  }
+  .btn
+  {
+    background-color: #ef6c00;
+    float: center;
+  }
+</style>
+
+
+<div class="container">
+  <form>
+
+    <div class="form-group">
+      <label for="eventName">Event Title</label>
+      <input type="text" class="form-control" id="EventName"  placeholder="Give it a short distinct name">
+    </div>
+    <div class="form-group">
+      <label for="eventName">Location</label>
+      <input type="text" class="form-control" id="EventLocation"  placeholder="Enter a venue or address">
+    </div>
+    <div class="form-group">
+      <label for="Starts">Starts</label>
+      <input type="date" class="form-control" id="EventStartDate">
+      <input type="time" class="form-control" id="EventStartTime">
+    </div>
+    <div class="form-group">
+      <label for="Ends">Ends</label>
+      <input type="date" class="form-control" id="EventEndDate">
+      <input type="time" class="form-control" id="EventEndTime">
+    </div>
+    <div class="form-group">
+      <label for="EventImage">Event Image</label>
+      <input type="file" class="form-control-file" id="EventImage" accept="image/png, image/jpeg">
+    </div>
+    <div class="form-group">
+      <label for="eventDescription">Event Description</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="eventOrg">Organizer Name</label>
+      <input type="text" class="form-control" id="eventOrganizer">
+    </div>
+    <div class="form-group">
+      <label for="eventOrgDesc">Organizer Description</label>
+      <textarea class="form-control" id="eventOrgDescription" rows="3"></textarea>
+    </div>
+     <button type="submit" class="btn btn-primary">Make Your Event Live</button>
+  </form>
+</div>
