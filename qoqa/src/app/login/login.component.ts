@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     console.log("calling ngOnInit in login component.ts")
-    
+
   }
 
   constructor(db: AngularFireDatabase, private authService: AuthService, private router: Router, private data: MiddlewareService) {
@@ -45,12 +45,12 @@ export class LoginComponent implements OnInit {
     this.authService.GoogleSignIn()
       .then((res) => {
         if (res != null) {
-          this.data.IsNewUser(res.user.uid, (isNewUser) => {
+          this.data.IsNewUser(res.User.uid, (isNewUser) => {
             console.log('isNewUser' + isNewUser)
             if (isNewUser) {
               let newUser = new User()
               newUser.uid = res.user.uid
-              newUser.email = res.user.email
+              newUser.email = res.User.email
               // newUser.firstName = res.user.firstName
               // newUser.lastName = res.user.lastName
               this.data.AddUser(newUser)

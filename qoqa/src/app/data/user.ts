@@ -1,7 +1,8 @@
+import { Event } from './events';
+
 export class User {
-  title: string;
+  eventHistory: Event[];
   uid: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  phoneNumber: string;
 }
