@@ -3,15 +3,9 @@ import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireList } from 'angularfire2/database';
+import { MiddlewareService } from '../services/middleware.service';
+import { User } from '../data/user';
 
-// export class Event {
-//   title: string;
-// }
-
-export class User {
-  userType: string;
-
-}
 
 // export const EVENTS: Event[] = [
 //   { title: 'Mr. Nice' },
@@ -34,20 +28,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     console.log("calling ngOnInit in login component.ts")
+    
   }
 
-  constructor(db: AngularFireDatabase, private authService: AuthService, private router: Router) {
-    // this.events= db.list('/events');
-    // console.log(db.list('/users', ref => ref.limitToFirst(1)));
-    //this.AddEvent("Shumba");
+  constructor(db: AngularFireDatabase, private authService: AuthService, private router: Router, private data: MiddlewareService) {
   }
-
-  // public AddEvent(eventTitle:string): void {
-  //   let newEvent = new Event();
-  //   newEvent.title = eventTitle;
-  //   // let newEvent = new Event(`My event #${this.eventCounter++}`);
-  //   this.events.push([newEvent]);
-  // }
 
   signInWithFacebook() {
     this.authService.FacebookSignIn()
@@ -59,23 +44,26 @@ export class LoginComponent implements OnInit {
   signInWithGoogle() {
     this.authService.GoogleSignIn()
       .then((res) => {
-        console.log(res);
-
-        // this.authService.setUserDetails(res.user);
-        this.authService.turnTestValueOn() // This is also test code
-        console.log(this.authService.getUserDetails());
-
-        this.router.navigate(['home'])
-        // The block below throws an error when we access metadata
-        // Todo(shumba): find new way to determine new user. 
-        // Just check our database maybe
-        // if (this.authService.getUserDetails().metadata.creationTime == this.authService.getUserDetails().metadata.lastSignInTime) {
-        //   // Navigate to new user profile page
-        //   this.router.navigate(['profile'])
-        // } else {
-        //   this.router.navigate(['home'])
-        // }
-        // console.log(this.authService.getUserDetails());
+        if (res != null) {
+          this.data.IsNewUser(res.user.uid, (isNewUser) => {
+            console.log('isNewUser' + isNewUser)
+            if (isNewUser) {
+              let newUser = new User()
+              newUser.uid = res.user.uid
+              newUser.email = res.user.email
+              // newUser.firstName = res.user.firstName
+              // newUser.lastName = res.user.lastName
+              this.data.AddUser(newUser)
+              // this.data.AddUserByID(res.user.uid);
+              this.router.navigate(['profile'])
+            } else {
+              this.router.navigate(['home'])
+            }
+          })
+          let current_user = new User()
+          // current_user.title = res.user.uid
+          this.data.AddUser(current_user)
+        }
       })
       .catch((err) => console.log(err + "ERROR"));
   }

@@ -18,24 +18,15 @@ export class AppMainNavComponent implements OnInit {
 
   ngOnInit() {
     console.log("calling ngOnInit in login app-main-nav.ts")
-
-    this.user = true // this.authService.getTestValue()
-    // this.user = this.authService.getUserDetails()
-
-
-    // To navigate to login if not logged in
-
-    // !!! Uncomment the if statement to turn on the authorization features
-    // !!! They are currently commented for debugging reasons.
-
-    if (!this.user) {
-      this.router.navigate(['login'])
-    }
-    
-    console.log("user: " + this.user)
+    this.verifyPermissions()
   }
 
-
+  async verifyPermissions() {
+   const user = await this.authService.isLoggedIn()
+   if (!user) {
+     this.router.navigate(['login'])
+   } 
+}
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
