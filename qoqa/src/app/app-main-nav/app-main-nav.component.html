@@ -3,6 +3,7 @@
 <head>
   </head>
   <body>
+<div *ngIf="user">
 <mat-toolbar color="primary">
     <button
       type="button"
@@ -15,12 +16,16 @@
     <span>Qoqa</span>
     <span class="spacer"> </span>
     <a href="#">Home</a>
-    <a href="#">Saved Events</a>
-    <a href="#">My Profile</a>
+    <a href="/events">Saved Events</a>
+    <a href="/profile">My Profile</a>
 
   </mat-toolbar>
+
+</div>
+
 </body>
 </html>
+
 
 
 

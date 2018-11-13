@@ -33,6 +33,22 @@ export class AuthService {
     return this.userDetails;
   }
 
+  private testValue = false;
+
+  turnTestValueOn() {
+    this.testValue = true
+  }
+
+  turnTestValueOff() {
+    this.testValue = false
+  }
+
+  getTestValue() {
+    return this.testValue
+  }
+
+
+
   // setUserDetails(userDetails: firebase.user) {
   //   this.userDetails = userDetails;
   // }

@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   // public events:AngularFireList<Event[]>;
 
   ngOnInit() {
+    console.log("calling ngOnInit in login component.ts")
   }
 
   constructor(db: AngularFireDatabase, private authService: AuthService, private router: Router) {
@@ -58,18 +59,19 @@ export class LoginComponent implements OnInit {
   signInWithGoogle() {
     this.authService.GoogleSignIn()
       .then((res) => {
-        // console.log(res.user);
+        console.log(res);
 
         // this.authService.setUserDetails(res.user);
 
         console.log(this.authService.getUserDetails());
         if (this.authService.getUserDetails().metadata.creationTime == this.authService.getUserDetails().metadata.lastSignInTime) {
           // Navigate to new user profile page
+          this.router.navigate(['profile'])
         } else {
           this.router.navigate(['home'])
         }
         // console.log(this.authService.getUserDetails());
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err + "ERROR"));
   }
 }
