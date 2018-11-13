@@ -6,14 +6,6 @@ import { AngularFireList } from 'angularfire2/database';
 import { MiddlewareService } from '../services/middleware.service';
 import { User } from '../data/user';
 
-
-// export const EVENTS: Event[] = [
-//   { title: 'Mr. Nice' },
-//   { title: 'Narco' },
-//   { title: 'Bombasto' },
-//   { title: 'Celeritas' }
-// ];
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,10 +13,6 @@ import { User } from '../data/user';
 })
 export class LoginComponent implements OnInit {
   title = 'qoqa';
-
-  //events = EVENTS;
-  // private eventCounter = 0;
-  // public events:AngularFireList<Event[]>;
 
   ngOnInit() {
     console.log("calling ngOnInit in login component.ts")
@@ -45,14 +33,11 @@ export class LoginComponent implements OnInit {
     this.authService.GoogleSignIn()
       .then((res) => {
         if (res != null) {
-          this.data.IsNewUser(res.User.uid, (isNewUser) => {
-            console.log('isNewUser' + isNewUser)
+          this.data.IsNewUser(res.user.uid, (isNewUser) => {
             if (isNewUser) {
               let newUser = new User()
               newUser.uid = res.user.uid
-              newUser.email = res.User.email
-              // newUser.firstName = res.user.firstName
-              // newUser.lastName = res.user.lastName
+              newUser.email = res.user.email
               this.data.AddUser(newUser)
               // this.data.AddUserByID(res.user.uid);
               this.router.navigate(['profile'])
