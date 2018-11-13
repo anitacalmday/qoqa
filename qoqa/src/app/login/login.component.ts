@@ -34,14 +34,10 @@ export class LoginComponent implements OnInit {
       .then((res) => {
         if (res != null) {
           this.data.IsNewUser(res.user.uid, (isNewUser) => {
-            console.log('response' + res)
-            console.log('isNewUser' + isNewUser)
             if (isNewUser) {
               let newUser = new User()
               newUser.uid = res.user.uid
               newUser.email = res.user.email
-              // newUser.firstName = res.user.firstName
-              // newUser.lastName = res.user.lastName
               this.data.AddUser(newUser)
               // this.data.AddUserByID(res.user.uid);
               this.router.navigate(['profile'])
