@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     console.log("calling ngOnInit in login component.ts")
-    
+
   }
 
   constructor(db: AngularFireDatabase, private authService: AuthService, private router: Router, private data: MiddlewareService) {
