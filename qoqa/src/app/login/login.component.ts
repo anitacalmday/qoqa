@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   signInWithFacebook() {
     this.authService.FacebookSignIn()
       .then((res) => {
-        //this.router.navigate(['dashboard'])
+        
       })
       .catch((err) => console.log(err));
   }
@@ -45,9 +45,6 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['home'])
             }
           })
-          let current_user = new User()
-          // current_user.title = res.user.uid
-          this.data.AddUser(current_user)
         }
       })
       .catch((err) => console.log(err + "ERROR"));
