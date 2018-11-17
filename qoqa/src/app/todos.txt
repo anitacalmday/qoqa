@@ -1,0 +1,9 @@
+
+Add toggle for individual/organization to profile page
+
+Complete user flow for:
+	loggin in as new user
+	loggin in as existing user
+	creating an event
+	creating a qoqa
+	accepting invitations
