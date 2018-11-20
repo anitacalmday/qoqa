@@ -45,7 +45,7 @@ export class MiddlewareService {
         console.log(data[i])
         if (data[i].uid == uid) {
           found = false
-          console.log('it is working it seems')
+          //console.log('it is working it seems')
         }
         console.log(data[i].uid)
         console.log(uid)
