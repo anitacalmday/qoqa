@@ -4,7 +4,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 import {MatTreeModule} from '@angular/material';
 import {Observable} from 'rxjs';
 import {AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { MiddlewareService } from '../services/middleware.service';
+
 
 @Component({
   selector: 'app-events',
@@ -13,14 +13,7 @@ import { MiddlewareService } from '../services/middleware.service';
 })
 
 export class EventsComponent implements OnInit {
-  constructor(private data: MiddlewareService) {
-  	data.getEvents((eventsList) => {
-      console.log(eventsList)
-      this.events = eventsList
-    })
-  }
-
-
+  constructor() { }
   ngOnInit() {
   }
   events: Event[];
