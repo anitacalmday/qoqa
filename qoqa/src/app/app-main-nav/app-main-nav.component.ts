@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 })
 export class AppMainNavComponent implements OnInit {
 
-  public user = false;
+  private showNav = false;
 
   constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private router: Router) {}
 
@@ -25,7 +25,9 @@ export class AppMainNavComponent implements OnInit {
    const user = await this.authService.isLoggedIn()
    if (!user) {
      this.router.navigate(['login'])
-   } 
+   } else {
+    this.showNav = true
+   }
 }
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

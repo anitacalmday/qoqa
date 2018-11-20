@@ -36,19 +36,23 @@ export class MiddlewareService {
     this.users$.push(newUser)
   }
 
+  UpdateUser(user: User): void {
+    this.data.object('/user/' + user.uid).update()
+  }
+
   IsNewUser(uid: String, onComplete) {
     var found = true
     this.users$ = this.database.list('users')
     this.database.list('users').valueChanges().subscribe(data => {
-      console.log(data)
+      // console.log(data)
       for (var i = 0; i < data.length; i++) {
-        console.log(data[i])
+        // console.log(data[i])
         if (data[i].uid == uid) {
           found = false
-          //console.log('it is working it seems')
+          // console.log('it is working it seems')
         }
-        console.log(data[i].uid)
-        console.log(uid)
+        // console.log(data[i].uid)
+        // console.log(uid)
       }
       onComplete(found)
     },

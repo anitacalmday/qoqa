@@ -15,18 +15,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private data: MiddlewareService) {
   	data.getEvents((eventsList) => {
-      //console.log(eventsList)
-      let newEvent = new Event()
-      newEvent.title = eventsList[0].title
-      this.events = [newEvent]
+      console.log(eventsList)
+      this.events = eventsList
     })
-  	// console.log(data.getEvents())
   }
 
   ngOnInit() {
-    let event = new Event()
-    event.title = "test out therer"
-    this.data.AddEvent(event)
   }
 
 }
