@@ -1,3 +1,55 @@
-<p>
-  events works!
-</p>
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!--Title Column
+    took out "let event of event"
+  "event.title causing error" -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Event </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="host">
+      <mat-header-cell *matHeaderCellDef> Host </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.host}} </mat-cell>
+    </ng-container>
+
+
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.location}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="organizer">
+        <mat-header-cell *matHeaderCellDef> Organizer </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.organizer}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[20, 50, 100]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+
+</div>
+  
+  
+  <!-- Copyright 2018 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

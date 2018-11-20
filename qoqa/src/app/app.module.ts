@@ -38,7 +38,7 @@ import {AllMaterialModule} from './material-module';
     SavedEventsComponent,
     InvitationsComponent,
     CreateQoqaComponent,
-    AppMainNavComponent
+    AppMainNavComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +49,7 @@ import {AllMaterialModule} from './material-module';
     AngularFireDatabaseModule,
     AppRoutingModule,
     LayoutModule,
+    AllMaterialModule
 
   ],
   providers: [AuthService],
