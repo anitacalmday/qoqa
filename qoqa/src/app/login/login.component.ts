@@ -13,6 +13,8 @@ import { User } from '../data/user';
 })
 export class LoginComponent implements OnInit {
   title = 'qoqa';
+  attempted = false;
+  isNewUser = false;
 
   ngOnInit() {
     console.log("calling ngOnInit in login component.ts")
@@ -29,23 +31,40 @@ export class LoginComponent implements OnInit {
       .catch((err) => console.log(err));
   }
   signInWithGoogle() {
-    this.authService.GoogleSignIn()
+    if (this.attempted == false) {
+      this.authService.GoogleSignIn()
       .then((res) => {
         if (res != null) {
           this.data.IsNewUser(res.user.uid, (isNewUser) => {
             if (isNewUser) {
+              this.isNewUser = true
               let newUser = new User()
               newUser.uid = res.user.uid
               newUser.email = res.user.email
               this.data.AddUser(newUser)
-              // this.data.AddUserByID(res.user.uid);
+              this.isNewUser = true
               this.router.navigate(['profile'])
             } else {
-              this.router.navigate(['home'])
+              if (this.isNewUser) {
+                this.router.navigate(['profile'])
+              } else {
+                this.router.navigate(['home'])
+              }
             }
           })
         }
       })
       .catch((err) => console.log(err + "ERROR"));
+      this.attempted = true
+    }
+    else {
+      if (this.isNewUser) {
+        this.router.navigate(['profile'])
+      }
+      else {
+        this.router.navigate(['home'])
+      }
+    }
+    
   }
 }
