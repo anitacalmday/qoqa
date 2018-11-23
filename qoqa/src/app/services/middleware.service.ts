@@ -37,8 +37,17 @@ export class MiddlewareService {
   }
 
   UpdateUser(user: User): void {
-    this.data.object('/user/' + user.uid).update()
+    // this.database.object('/user/' + user.uid).update()
   }
+
+  MakeUserOrganization(uid: string) {
+
+  }
+
+  MakeUserIndividual(uid: string) {
+
+  }
+
 
   IsNewUser(uid: String, onComplete) {
     var found = true
@@ -47,7 +56,7 @@ export class MiddlewareService {
       // console.log(data)
       for (var i = 0; i < data.length; i++) {
         // console.log(data[i])
-        if (data[i].uid == uid) {
+        if (data[i]['uid'] == uid) {
           found = false
           // console.log('it is working it seems')
         }
