@@ -1,0 +1,13 @@
+html, body { height: 100%; }
+.container-fluid {
+  background-color: orange;
+  min-height: 100%
+  overflow: hidden;
+
+}
+
+.cover {
+  object-fit: cover;
+  width: 50px;
+  height: 100px;
+}

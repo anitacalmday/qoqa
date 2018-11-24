@@ -1,5 +1,5 @@
 
-
+<div *ngIf="showNav">
 <mat-toolbar color="primary">
   <button
     type="button"
@@ -11,9 +11,11 @@
   </button>
   <span>Qoqa</span>
   <span class="spacer"> </span>
-  <a>Home</a>
-  <a>Invitations</a>
-  <a>Saved Events</a>
-  <a>My Profile</a>
+  <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+  <a class="nav-link" href="/create-event">Create Event</a>
+  <a class="nav-link" href="/invitations">Invitations</a>
+  <a class="nav-link" href="/saved-events">Saved Events</a>
+  <a class="nav-link" href="/profile">My Profile</a>
 
 </mat-toolbar>
+</div>

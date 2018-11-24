@@ -6,24 +6,18 @@
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAfAicW0WwcRIWGt0woiKHNqBAP8Jtqsbs
     &q=Space+Needle,Seattle+WA" allowfullscreen>
 </iframe>
+<app-events></app-events>
+    <table class="table">
+      <h2 style="text-align:center;">Events</h2>
+      <tbody>
+        <tr *ngFor="let event of events">
+          <th scope="row">Logo</th>
+          <td>{{event.title}}</td>
+          <td>{{event.date}}</td>
+          <td>{{event.location}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
 
-
-  <!--  <ul>
-      <li *ngFor="let event of events">
-        <span>{{event.title}}</span>
-      </li>
-    </ul> -->
-
-
-<app-events>
-
-
-
-</app-events>
-
-
-
-<!-- button tag should be an a tag but stop color changing -->
-
-</body>
 
