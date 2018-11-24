@@ -24,6 +24,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { LoginComponent } from './login/login.component';
 import {AllMaterialModule} from './material-module';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 
 
@@ -39,6 +40,7 @@ import {AllMaterialModule} from './material-module';
     InvitationsComponent,
     CreateQoqaComponent,
     AppMainNavComponent,
+    EventDetailsComponent,
   ],
   imports: [
     BrowserModule,

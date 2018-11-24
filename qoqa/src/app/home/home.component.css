@@ -1,4 +1,8 @@
-.mat-icon{
-    float: right;
+.addbutton{
     position: fixed;
+    float: right;
+}
+
+body {
+    height: 100%;
 }
