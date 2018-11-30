@@ -1,0 +1,8 @@
+.addbutton{
+    position: fixed;
+    float: right;
+}
+
+body {
+    height: 100%;
+}

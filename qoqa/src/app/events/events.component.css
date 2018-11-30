@@ -1,0 +1,17 @@
+.addbutton{
+    position: absolute;
+    left: 88%;
+    top: 80%;
+
+}
+
+.mat-icon{
+    font-size: 80px;
+}
+
+.mat-elevation-z8{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+

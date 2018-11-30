@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule} from '@angular/material';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -24,6 +23,8 @@ import { AppMainNavComponent } from './app-main-nav/app-main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { LoginComponent } from './login/login.component';
+import {AllMaterialModule} from './material-module';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 
 
@@ -38,7 +39,8 @@ import { LoginComponent } from './login/login.component';
     SavedEventsComponent,
     InvitationsComponent,
     CreateQoqaComponent,
-    AppMainNavComponent
+    AppMainNavComponent,
+    EventDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,12 +50,8 @@ import { LoginComponent } from './login/login.component';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AppRoutingModule,
-    MatButtonModule,
     LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
+    AllMaterialModule
 
   ],
   providers: [AuthService],

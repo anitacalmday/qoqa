@@ -1,4 +1,4 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 
 .sidenav-container {
   height: 100%;
@@ -29,4 +29,8 @@
   color: white;
   text-decoration: none;
 
+}
+
+a{
+  padding: 20px;
 }

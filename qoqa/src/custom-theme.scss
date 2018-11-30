@@ -1,21 +1,15 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 @import '~@angular/material/_theming.scss';
 
 @include mat-core();
 
 
-$primary: mat-palette($mat-orange, 800);
-$accent: mat-palette($mat-teal, A200, A100, A400);
+$my-theme-primary: mat-palette($mat-orange, 800);
+$my-theme-accent: mat-palette($mat-teal);
+$my-theme-warn: mat-palette($mat-red);
 
-$theme: mat-light-theme($primary, $accent);
-
-
-// $custom-theme-primary: mat-palette($mat-orange);
-// // $custom-theme-accent: mat-palette($mat-orange, A200, A100, A400);
-// // $custom-theme-warn: mat-palette($mat-red);
+$my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
 
 
-// $custom-theme: mat-light-theme($custom-theme-primary);
 
-
-@include angular-material-theme($theme);
+@include angular-material-theme($my-theme);

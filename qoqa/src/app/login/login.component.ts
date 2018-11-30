@@ -35,13 +35,12 @@ export class LoginComponent implements OnInit {
       this.authService.GoogleSignIn()
       .then((res) => {
         if (res != null) {
-          this.data.IsNewUser(res.user.uid, (isNewUser) => {
-            console.log("once");
+          this.data.IsNewUser(res['user']['uid'], (isNewUser) => {
             if (isNewUser) {
               this.isNewUser = true
               let newUser = new User()
-              newUser.uid = res.user.uid
-              newUser.email = res.user.email
+              newUser.uid = res['user']['uid']
+              newUser.email = res['user']['email']
               this.data.AddUser(newUser)
               this.isNewUser = true
               this.router.navigate(['profile'])
