@@ -26,15 +26,15 @@ export class MiddlewareService {
     error => { console.log('problem loading event list ' + error) });
   }
 
-  AddUser(user: User): void { this.database.list('/users/' + user.uid).set(user.uid, user); }
+  AddUser(user: User): void { this.database.list('/users/').set(user.uid, user); }
 
-  AddIndividualUser(user: Individual): void { this.database.list('/users/individuals/' + user.uid).set(user.uid, user); }
+  AddIndividualUser(user: Individual): void { this.database.list('/users/individuals/').set(user.uid, user); }
 
-  AddOrganizationUser(user: Organization): void { this.database.list('/users/organizations/' + user.uid).set(user.uid, user); }
+  AddOrganizationUser(user: Organization): void { this.database.list('/users/organizations/').set(user.uid, user); }
 
-  AddEvent(event: Event): void { this.database.list('/events/' + event.eventID).set(event.eventID, event); }
+  AddEvent(event: Event): void { this.database.list('/events/').set(event.eventID, event); }
 
-  AddQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/' + qoqa.qoqaID).set(qoqa.qoqaID, qoqa); }
+  AddQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/').set(qoqa.qoqaID, qoqa); }
 
   setUser(user: User): void { this.user = user; }
 
@@ -56,15 +56,15 @@ export class MiddlewareService {
 
   getQoqa() { return this.qoqa; }
 
-  UpdateUser(user: User): void { this.database.list('/users/' + user.uid).update(user.uid, { 'email': user.email, 'phoneNumber': user.phoneNumber}); }
+  UpdateUser(user: User): void { this.database.list('/users/').update(user.uid, { 'email': user.email, 'phoneNumber': user.phoneNumber}); }
 
-  UpdateIndividual(user: Individual): void { this.database.list('/users/individuals/' + user.uid).update(user.uid, user); }
+  UpdateIndividual(user: Individual): void { this.database.list('/users/individuals/').update(user.uid, user); }
 
-  UpdateOrganization(user: Organization): void { this.database.list('/users/organizations/' + user.uid).update(user.uid, user); }
+  UpdateOrganization(user: Organization): void { this.database.list('/users/organizations/').update(user.uid, user); }
 
-  UpdateEvent(event: Event): void { this.database.list('/events/' + event.eventID).update(event.eventID, event); }
+  UpdateEvent(event: Event): void { this.database.list('/events/').update(event.eventID, event); }
 
-  UpdateQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/' + qoqa.qoqaID).update(qoqa.qoqaID, qoqa); }
+  UpdateQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/').update(qoqa.qoqaID, qoqa); }
 
   DeleteUser(user: User): void { this.database.list('/users/' + user.uid).remove(); }
 
