@@ -66,15 +66,15 @@ export class MiddlewareService {
 
   UpdateQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/').update(qoqa.qoqaID, qoqa); }
 
-  DeleteUser(user: User): void { this.database.list('/users/' + user.uid).remove(); }
+  DeleteUser(user: User): void { this.database.list('/users/' + user.uid).remove(); this.user = null; }
 
-  DeleteIndividual(user: Individual): void { this.database.list('/users/individuals/' + user.uid).remove(); }
+  DeleteIndividual(user: Individual): void { this.database.list('/users/individuals/' + user.uid).remove(); this.individual = null; }
 
-  DeleteOrganization(user: Organization): void { this.database.list('/users/organizations/' + user.uid).remove(); }
+  DeleteOrganization(user: Organization): void { this.database.list('/users/organizations/' + user.uid).remove(); this.organization = null; }
 
-  DeleteEvent(event: Event): void { this.database.list('/events/' + event.eventID).remove(); }
+  DeleteEvent(event: Event): void { this.database.list('/events/' + event.eventID).remove(); this.event = null; }
 
-  DeleteQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/' + qoqa.qoqaID).remove(); }
+  DeleteQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/' + qoqa.qoqaID).remove(); this.qoqa = null; }
 
   getUserbyID(uid: string) { return this.database.list('/users/' + uid); }
 
