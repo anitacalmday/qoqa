@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MiddlewareService } from "../services/middleware.service";
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Event } from "../data/events";
 
 @Component({
   selector: 'app-create-event',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
-
-  constructor() { }
+  event = new Event;
+  constructor(private database: AngularFireDatabase, private data: MiddlewareService) { }
 
   ngOnInit() {
   }
+
+  CreateEvent(event: Event): void { this.data.AddEvent(event); }
 
 }
