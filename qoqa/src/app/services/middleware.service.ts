@@ -3,6 +3,7 @@ import { Event } from '../data/events';
 import { User } from '../data/user';
 import { Individual } from "../data/individual";
 import { Organization } from "../data/organization";
+import { Qoqa } from '../data/qoqa';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 @Injectable({
@@ -13,6 +14,7 @@ export class MiddlewareService {
   individual: Individual;
   organization: Organization;
   event: Event;
+  qoqa: Qoqa;
 
   constructor(private database: AngularFireDatabase) {}
 
@@ -32,6 +34,8 @@ export class MiddlewareService {
 
   AddEvent(event: Event): void { this.database.list('/events/' + event.eventID).set(event.eventID, event); }
 
+  AddQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/' + qoqa.qoqaID).set(qoqa.qoqaID, qoqa); }
+
   setUser(user: User): void { this.user = user; }
 
   setIndividual(user: Individual): void { this.individual = user; }
@@ -39,6 +43,8 @@ export class MiddlewareService {
   setOrganization(user: Organization): void { this.organization = user; }
 
   setEvent(event: Event): void { this.event = event; }
+
+  setQoqa(qoqa: Qoqa): void { this.qoqa = qoqa; }
 
   getUser() { return this.user; }
 
@@ -48,6 +54,8 @@ export class MiddlewareService {
 
   getEvent() { return this.event; }
 
+  getQoqa() { return this.qoqa; }
+
   UpdateUser(user: User): void { this.database.list('/users/' + user.uid).update(user.uid, { 'email': user.email, 'phoneNumber': user.phoneNumber}); }
 
   UpdateIndividual(user: Individual): void { this.database.list('/users/individuals/' + user.uid).update(user.uid, user); }
@@ -56,6 +64,8 @@ export class MiddlewareService {
 
   UpdateEvent(event: Event): void { this.database.list('/events/' + event.eventID).update(event.eventID, event); }
 
+  UpdateQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/' + qoqa.qoqaID).update(qoqa.qoqaID, qoqa); }
+
   DeleteUser(user: User): void { this.database.list('/users/' + user.uid).remove(); }
 
   DeleteIndividual(user: Individual): void { this.database.list('/users/individuals/' + user.uid).remove(); }
@@ -63,6 +73,8 @@ export class MiddlewareService {
   DeleteOrganization(user: Organization): void { this.database.list('/users/organizations/' + user.uid).remove(); }
 
   DeleteEvent(event: Event): void { this.database.list('/events/' + event.eventID).remove(); }
+
+  DeleteQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/' + qoqa.qoqaID).remove(); }
 
   getUserbyID(uid: string) { return this.database.list('/users/' + uid); }
 

@@ -12,8 +12,7 @@ export class CreateEventComponent implements OnInit {
   event = new Event;
   constructor(private database: AngularFireDatabase, private data: MiddlewareService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   CreateEvent(event: Event): void { this.data.AddEvent(event); }
 

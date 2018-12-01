@@ -1,6 +1,5 @@
 import { User } from './user';
 import { Event } from './events';
-import { Location} from '@angular/common';
 import { Qoqa } from './qoqa';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
@@ -15,7 +14,7 @@ export class Organization extends User {
   getTitle() {
     return this.title;
   }
-  setAddress(address: Location) {
+  setAddress(address: string) {
     this.address = address;
   }
   getAddress() {
@@ -34,7 +33,7 @@ export class Organization extends User {
     return this.qoqaHistory;
   }
   title: string;
-  address: Location;
+  address: string;
   upcomingEvent: Event[];
   qoqaHistory: Qoqa[];
 }
