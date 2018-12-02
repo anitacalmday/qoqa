@@ -10,13 +10,13 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
   providedIn: 'root'
 })
 export class MiddlewareService {
-  user: User;
-  individual: Individual;
-  organization: Organization;
-  event: Event;
-  qoqa: Qoqa;
+  public user: User;
+  public individual: Individual;
+  public organization: Organization;
+  public event: Event;
+  public qoqa: Qoqa;
 
-  constructor(private database: AngularFireDatabase) {}
+  constructor(public database: AngularFireDatabase) {}
 
   getEvents(onComplete) {
 	  this.database.list('/events').valueChanges().subscribe(data => {
@@ -46,15 +46,15 @@ export class MiddlewareService {
 
   setQoqa(qoqa: Qoqa): void { this.qoqa = qoqa; }
 
-  getUser() { return this.user; }
+  getUser(): User { return this.user; }
 
-  getIndividual() { return this.individual; }
+  getIndividual(): Individual { return this.individual; }
 
-  getOrganization() { return this.organization; }
+  getOrganization(): Organization { return this.organization; }
 
-  getEvent() { return this.event; }
+  getEvent(): Event { return this.event; }
 
-  getQoqa() { return this.qoqa; }
+  getQoqa(): Qoqa { return this.qoqa; }
 
   UpdateUser(user: User): void { this.database.list('/users/').update(user.uid, { 'email': user.email, 'phoneNumber': user.phoneNumber}); }
 
@@ -78,15 +78,20 @@ export class MiddlewareService {
 
   getUserbyID(uid: string) { return this.database.list('/users/' + uid); }
 
-  MakeUserOrganization(user: User) {
+  MakeUserOrganization(uid: string, email: string, phoneNumber: string, eventHistory: Event[]) {
     var organization = new Organization;
-    organization.uid = user.uid;
-    organization.email = user.email;
-    organization.eventHistory = user.eventHistory;
-    organization.phoneNumber = user.phoneNumber;
+    organization.uid = uid;
+    organization.email = email;
+    organization.eventHistory = eventHistory;
+    organization.phoneNumber = phoneNumber;
     organization.organization = true;
     this.AddOrganizationUser(organization);
     this.setOrganization(organization);
+    var user = new User;
+    user.uid = uid;
+    user.phoneNumber = phoneNumber;
+    user.email = email;
+    user.eventHistory = eventHistory;
     this.DeleteUser(user);
   }
 

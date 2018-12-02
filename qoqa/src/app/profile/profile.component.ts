@@ -10,33 +10,44 @@ import { MiddlewareService } from "../services/middleware.service";
 })
 export class ProfileComponent implements OnInit {
   user = new User;
-  email: string;
-  firstName: string;
-  lastName: string;
-  title: string;
-  organization: boolean;
-  phoneNumber: string;
-  dob: string;
-  address: string;
+  email = '';
+  firstName = '';
+  lastName = '';
+  title = '';
+  organization = false;
+  phoneNumber = '';
+  dob = '';
+  address = '';
   invalidEntry = false;
 
-  constructor(private database: AngularFireDatabase, private data: MiddlewareService) {
-    this.user = this.data.getUser();
-    // this.saveChanges(this.user);
+  constructor(public database: AngularFireDatabase, private data: MiddlewareService) {
+    // this.data.user.uid
   }
 
   ngOnInit() {
+    this.data.user = this.data.getUser();
   }
   // todo: fix saveChanges() call in profile.component.html
-  saveChanges(user: User) {
-    // this.user.phoneNumber = '614-499-1587';
+  saveChanges() {
     console.log('REACCHHEDDD SAVECHANGES!');
     this.invalidEntry = false;
-    this.user.organization = this.organization;
-    this.user.email = this.email;
-    this.user.phoneNumber = this.phoneNumber;
-    if (this.user.organization) {
-      this.data.MakeUserOrganization(user);
+    var user = new User;
+
+    user.uid = this.data.user.uid;
+    user.phoneNumber = this.data.user.phoneNumber;
+    user.email = this.data.user.email;
+
+    console.log(this.organization); //displays toggle truth
+
+    user.organization = this.organization;
+    console.log(user.organization); //organizer truth for user
+
+    user.email = this.email;
+    user.phoneNumber = this.phoneNumber;
+    console.log('finished prepopulation');
+    if (this.organization) {
+      console.log('inside if!');
+      this.data.MakeUserOrganization(user.uid, user.email, user.phoneNumber, user.eventHistory);
       var organization = this.data.getOrganization();
       organization.title = this.title;
       organization.email = this.email;
@@ -49,6 +60,7 @@ export class ProfileComponent implements OnInit {
         this.data.UpdateOrganization(organization);
       }
     } else {
+      console.log('inside else!');
       this.data.MakeUserIndividual(user);
       var individual = this.data.getIndividual();
       individual.firstName = this.firstName;

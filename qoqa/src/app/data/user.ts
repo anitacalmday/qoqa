@@ -14,9 +14,9 @@ export class User {
   getPhoneNumnber() {
     return this.phoneNumber;
   }
-  eventHistory: Event[];
-  uid: string;
-  email: string;
-  phoneNumber: string;
-  organization: boolean;
+  public eventHistory: Event[];
+  public uid: string;
+  public email: string;
+  public phoneNumber: string;
+  public organization: boolean;
 }
