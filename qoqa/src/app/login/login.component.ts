@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
               this.data.AddUser(newUser);
               this.isNewUser = true;
               this.data.setUser(newUser);
+              sessionStorage.setItem('uid', this.data.user.uid);
               this.router.navigate(['profile'])
             } else {
               if (this.isNewUser) {

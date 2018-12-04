@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.user = this.data.getUser();
+    //this.data.user = this.data.getUser();
   }
   // todo: fix saveChanges() call in profile.component.html
   saveChanges() {
@@ -33,9 +33,18 @@ export class ProfileComponent implements OnInit {
     this.invalidEntry = false;
     var user = new User;
 
-    user.uid = this.data.user.uid;
-    user.phoneNumber = this.data.user.phoneNumber;
-    user.email = this.data.user.email;
+    user.uid = sessionStorage.getItem('uid');
+    console.log(user.uid);
+    // console.log(this.data.user.uid)
+    // user.uid = this.data.user.uid;
+    this.data.getUser(user.uid, (user) => {
+      console.log(user)
+      this.user = user
+    })
+    // this.data.getUser(user.uid)
+    console.log(this.user.uid);
+    user.phoneNumber = this.user.phoneNumber;
+    user.email = this.user.email;
 
     console.log(this.organization); //displays toggle truth
 
@@ -44,6 +53,7 @@ export class ProfileComponent implements OnInit {
 
     user.email = this.email;
     user.phoneNumber = this.phoneNumber;
+    user.eventHistory = [];
     console.log('finished prepopulation');
     if (this.organization) {
       console.log('inside if!');

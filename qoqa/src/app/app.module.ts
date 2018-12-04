@@ -18,12 +18,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { SavedEventsComponent } from './saved-events/saved-events.component';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { CreateQoqaComponent } from './create-qoqa/create-qoqa.component';
+import { MiddlewareService } from './services/middleware.service';
+
 
 import { AppMainNavComponent } from './app-main-nav/app-main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { LoginComponent } from './login/login.component';
-import {AllMaterialModule} from './material-module';
+import { AllMaterialModule } from './material-module';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { FormsModule } from "@angular/forms";
 
@@ -56,7 +58,7 @@ import { FormsModule } from "@angular/forms";
     AllMaterialModule
 
   ],
-  providers: [AuthService],
+  providers: [AuthService, MiddlewareService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

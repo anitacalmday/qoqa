@@ -36,25 +36,41 @@ export class MiddlewareService {
 
   AddQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/').set(qoqa.qoqaID, qoqa); }
 
-  setUser(user: User): void { this.user = user; }
-
-  setIndividual(user: Individual): void { this.individual = user; }
-
-  setOrganization(user: Organization): void { this.organization = user; }
-
-  setEvent(event: Event): void { this.event = event; }
-
-  setQoqa(qoqa: Qoqa): void { this.qoqa = qoqa; }
-
-  getUser(): User { return this.user; }
-
-  getIndividual(): Individual { return this.individual; }
-
-  getOrganization(): Organization { return this.organization; }
-
-  getEvent(): Event { return this.event; }
-
-  getQoqa(): Qoqa { return this.qoqa; }
+  getEvents(eventId, onComplete) {
+    this.database.list('/events/' + eventId).valueChanges().subscribe(data => {
+      // console.log(data)
+      onComplete(data)
+    },
+    error => { console.log('problem loading event list ' + error) });
+  }
+  getUser(uid: String, onComplete) {
+    this.database.list('/users/' + uid).valueChanges().subscribe(data => {
+      // console.log(data)
+      onComplete(data)
+    },
+    error => { console.log('problem loading user list ' + error) });
+  }
+  getIndividual(uid: String, onComplete) {
+    this.database.list('/users/individuals/' + uid).valueChanges().subscribe(data => {
+      // console.log(data)
+      onComplete(data)
+    },
+    error => { console.log('problem loading individual list ' + error) });
+  }
+  getOrganization(uid: String, onComplete) {
+    this.database.list('/users/organizations/' + uid).valueChanges().subscribe(data => {
+      // console.log(data)
+      onComplete(data)
+    },
+    error => { console.log('problem loading organization list ' + error) });
+  }
+  getQoqa(qoqaId: String, onComplete) {
+    this.database.list('/qoqas/' + qoqaId).valueChanges().subscribe(data => {
+      // console.log(data)
+      onComplete(data)
+    },
+    error => { console.log('problem loading qoqa list ' + error) });
+  }
 
   UpdateUser(user: User): void { this.database.list('/users/').update(user.uid, { 'email': user.email, 'phoneNumber': user.phoneNumber}); }
 
@@ -85,6 +101,7 @@ export class MiddlewareService {
     organization.eventHistory = eventHistory;
     organization.phoneNumber = phoneNumber;
     organization.organization = true;
+    console.log('Organization instance: ' + organization);
     this.AddOrganizationUser(organization);
     this.setOrganization(organization);
     var user = new User;
