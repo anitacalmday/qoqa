@@ -47,9 +47,9 @@
             </div>
           </div>
           <div *ngIf="!organization" class="form-group">
-            <label class="col-lg-3 control-label">DOB (MM/DD/YYYY):</label>
+            <label class="col-lg-3 control-label">Date of Birth:</label>
             <div class="col-lg-8">
-              <input [(ngModel)]="dob" name="dob" class="form-control" type="text" value="">
+              <input [(ngModel)]="dob" name="dob" class="form-control" type="date" value="">
             </div>
           </div>
           <div *ngIf="organization" class="form-group">
