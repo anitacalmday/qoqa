@@ -25,7 +25,18 @@ export class FillQoqaComponent implements OnInit {
   event = new Event();
   constructor(private data: MiddlewareService, private router: Router) {
     this.event = JSON.parse(sessionStorage.getItem('event'));
-    this.fillForm(this.event.qoqas[0].qoqaID);
+    this.title = this.event.title;
+    console.log(this.event);
+    this.data.getQoqas((qoqas) => {
+      for(let qoqa of qoqas) {
+        console.log('qoqa event id: ' + qoqa.eventID);
+        if (qoqa.eventID === this.event.eventID) {
+          console.log(qoqa.qoqaID);
+          this.fillForm(qoqa.qoqaID);
+        }
+      }
+    });
+    // this.fillForm(this.event.qoqas[0].qoqaID);
   }
 
   ngOnInit() {
@@ -33,6 +44,8 @@ export class FillQoqaComponent implements OnInit {
   fillForm(qoqaID: string) {
     this.data.getQoqa(qoqaID, (qoqa) => {
       this.qoqa = qoqa;
+      console.log('qoqa object inside fillForm(): ' + qoqa);
+      // Todo: fix line above! currently showing qoqa object not to be properly populated
       this.title = this.event.title;
       this.question1 = this.qoqa.questions[0].prompt;
       this.question2 = this.qoqa.questions[1].prompt;
