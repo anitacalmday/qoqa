@@ -10,6 +10,7 @@ import { ProfileComponent } from "./profile/profile.component";
 import { SavedEventsComponent } from "./saved-events/saved-events.component";
 import { LoginComponent } from "./login/login.component";
 import { FillQoqaComponent } from "./fill-qoqa/fill-qoqa.component";
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'saved-events', component: SavedEventsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'fill-qoqa', component: FillQoqaComponent},
+  { path: 'event-details', component: EventDetailsComponent},
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'
