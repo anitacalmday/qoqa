@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MiddlewareService } from '../services/middleware.service';
+import { Router } from "@angular/router";
 
 import { Event } from '../data/events';
 import {Router} from "@angular/router";
@@ -27,6 +28,5 @@ export class HomeComponent implements OnInit {
     sessionStorage.setItem('eventID', JSON.stringify(event));
     this.router.navigate(['/fill-qoqa']);
   }
-
 }
 
