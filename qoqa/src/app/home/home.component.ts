@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MiddlewareService } from '../services/middleware.service';
 import { Router } from "@angular/router";
-
 import { Event } from '../data/events';
-import {Router} from "@angular/router";
-
 
 @Component({
   selector: 'app-home',
@@ -24,8 +21,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
+  // Todo: must find way to effectively call joinEvent specifying which event (which leads to a qoqa) to later display a specific qoqa
   joinEvent(event: Event) {
-    sessionStorage.setItem('eventID', JSON.stringify(event));
+    sessionStorage.setItem('event', JSON.stringify(event));
     this.router.navigate(['/fill-qoqa']);
   }
 }

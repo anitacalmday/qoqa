@@ -9,15 +9,15 @@
 <app-events></app-events>
    <mat-card>
 
-      <a mat-button><mat-icon (click)="CreateQoqa()" color="primary">add_location</mat-icon></a> 
+      <a mat-button><mat-icon (click)="CreateQoqa()" color="primary">add_location</mat-icon></a>
 
-      
+
 <table class="table">
       <span class="inline">
   <h2>Events</h2>
-  
+
       </span>
-     
+
       <tbody>
         <tr>
           <th>Title</th>
@@ -26,16 +26,16 @@
           <th>Time</th>
           <th>Button(th will be removed)</th>
         </tr>
-    
+
         <tr *ngFor="let event of events">
           <td>{{event.title}}</td>
           <td>{{event.location}}</td>
           <td>{{event.date}}</td>
           <td>{{event.time}}</td>
-          <td><button mat-button-raised color="primary">Click me to Join Event</button></td>
+          <td><button mat-button-raised color="primary" (click)="joinEvent($event)">Click me to Join Event</button></td>
         </tr>
 
-    
+
 
 
       </tbody>
