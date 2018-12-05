@@ -1,5 +1,4 @@
 
-<body>
 
   <iframe
   frameborder="0" style="border:0; min-width: 100%" height=500
@@ -18,36 +17,80 @@
   
       </span>
      
-      <tbody>
+     
         <tr>
-          <th>Title</th>
-          <th>Location</th>
-          <th>Date</th>
-          <th>Time</th>
+          <th class="theader">
+            <span>Title</span>
+            <span>Location</span>
+            <span>Date</span>
+            <span>Time</span>
+            </th>
+         <!-- <th>Location</th>
+        <th>Date</th> -->
+           <!--   <th>Time</th> -->
         </tr>
     
         <!-- <tr *ngFor="let event of events"> -->
-         <tr *ngFor="let event of events">
-          <!-- <mat-accordion> -->
-            <mat-expansion-panel >
+            <tbody>
+         <tr>
+            <mat-expansion-panel *ngFor="let event of events">
             <mat-expansion-panel-header >
           <mat-panel-title>{{event.title}}</mat-panel-title>
-          <mat-panel-title>{{event.location}}</mat-panel-title>
-          <mat-panel-title>{{event.date}}</mat-panel-title>
-          <mat-panel-title>{{event.time}}</mat-panel-title>
+          <mat-panel-description>{{event.location}}</mat-panel-description>
+          <mat-panel-description>{{event.date}}</mat-panel-description>
+          <mat-panel-description>{{event.time}}</mat-panel-description>
           </mat-expansion-panel-header>
           <td>{{event.description}}</td>
         
           <td><button mat-button-raised color="primary">Click me to Join Event</button></td>
         <!-- </tr> -->
       </mat-expansion-panel>
-      <!-- </mat-accordion> -->
+
 </tr>
-    
+
+
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 
       </tbody>
     </table>
+
+    <!-- <mat-accordion>
+        <mat-expansion-panel [expanded]="allExpandState">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Account #: {{accountNumber}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <table>
+                <tr>
+                  <td>Value</td>
+                  <td>Value</td>
+                  <td>Value</td>
+                </tr>
+                <tr>
+                  <td>Value</td>
+                  <td>Value</td>
+                  <td>Value</td>
+                </tr>
+                <tr>
+                  <td>Value</td>
+                  <td>Value</td>
+                  <td>Value</td>
+                </tr>
+              </table>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+      </mat-accordion> -->
+
+
+
+
+
 
     <mat-paginator #paginator
                  [pageSize]="10"
@@ -57,8 +100,6 @@
 </mat-card>
 
 
-
-  </body>
 
 
 
