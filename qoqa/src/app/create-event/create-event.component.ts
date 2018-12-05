@@ -19,15 +19,17 @@ export class CreateEventComponent implements OnInit {
   host = '';
   eventCount = 0;
 
-  constructor(public database: AngularFireDatabase, private data: MiddlewareService, private router: Router) { }
-
-  ngOnInit() { }
-  CreateEvent(): void {
+  constructor(public database: AngularFireDatabase, private data: MiddlewareService, private router: Router) {
     this.data.getEvents((data) => {
       for(var i = 0; i<data.length; i++) {
         this.eventCount = this.eventCount + 1;
       }
     });
+  }
+
+  ngOnInit() { }
+  CreateEvent(): void {
+    console.log('eventCount: ' + this.eventCount);
     if (parseInt(sessionStorage.getItem('isOrg'))) {
       this.data.getOrganization(sessionStorage.getItem('uid'), (organization) => {
         console.log(organization);
@@ -38,7 +40,7 @@ export class CreateEventComponent implements OnInit {
         this.event.organizer = individual;})
     }
     this.event.qoqas = [];
-    this.event.host = this.host.split(" ");
+    this.event.host = this.host;
     for(var i = 0; i<this.host.split(" ").length; i++) {
       this.data.addInvite(this.eventCount.toString(), this.host.split(" ")[i]);
     }

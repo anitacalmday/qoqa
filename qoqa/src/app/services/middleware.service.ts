@@ -36,11 +36,11 @@ export class MiddlewareService {
     error => { console.log('problem loading event list ' + error) });
   }
   getEvent(eventId: String, onComplete) {
-    this.database.list('/users/' + eventId).valueChanges().subscribe(data => {
+    this.database.list('/events/' + eventId).valueChanges().subscribe(data => {
         // console.log(data)
         onComplete(data)
       },
-      error => { console.log('problem loading user list ' + error) });
+      error => { console.log('problem loading single event' + error) });
   }
   getUser(uid: String, onComplete) {
     this.database.list('/users/' + uid).valueChanges().subscribe(data => {
@@ -75,22 +75,23 @@ export class MiddlewareService {
     this.getIndividual(userId, (user) => {
       console.log(user);
       if (this.isEmptyObject(user)) {
-        this.database.list('/users/organizations/' + userId + '/invitations').push(eventId)
+        this.database.list('/users/organizations/' + userId).set('invitations', eventId);
       } else {
-        this.database.list('/users/individuals/' + userId + '/invitations').push(eventId)
+        this.database.list('/users/individuals/' + userId).set('invitations', eventId);
       }
-    })
+    });
   }
 
   declineInvite(eventId: string, userId: string) {
     this.getIndividual(userId, (user) => {
       console.log(user);
+      this.database.list('/events/' + eventId + '/host/').remove();
       if (this.isEmptyObject(user)) {
-        this.database.list('/users/organizations/' + userId + '/invitations').remove(eventId)
+        this.database.list('/users/organizations/' + userId + '/invitations').remove();
       } else {
-        this.database.list('/users/individuals/' + userId + '/invitations').remove(eventId)
+        this.database.list('/users/individuals/' + userId + '/invitations').remove();
       }
-    })
+    });
   }
 
   getInvites(userId: string, onComplete): string[] {
@@ -176,33 +177,23 @@ export class MiddlewareService {
 
 
   IsNewUser(uid: String, onComplete) {
-    var found = false;
+    var newUser = true;
     this.getIndividual(uid, (user) => {
       console.log(user);
       if (this.isEmptyObject(user)) {
         this.getOrganization(uid, (user1) => {
           if (this.isEmptyObject(user1)) {
-            onComplete();
+            newUser = true;
+            console.log("new user")
+            console.log(newUser)
+            onComplete(newUser);
           }
         });
-        onComplete();
+        newUser = false
+        onComplete(newUser);
       } else {
-        found = true;
-      } onComplete(found);
+        newUser = false;
+      } onComplete(newUser);
     })
-    /*this.database.list('users').valueChanges().subscribe(data => {
-      // console.log(data)
-      for (var i = 0; i < data.length; i++) {
-        // console.log(data[i])
-        if (data[i]['uid'] == uid) {
-          found = true
-          // console.log('it is working it seems')
-        }
-        // console.log(data[i].uid)
-        // console.log(uid)
-      }
-      onComplete(found)
-    },
-    error => { console.log(error) });*/
   }
 }
