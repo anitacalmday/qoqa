@@ -1,8 +1,20 @@
-.addbutton{
-    position: fixed;
-    float: right;
-}
 
 body {
     height: 100%;
 }
+
+.mat-icon{
+    font-size: 60px;
+}
+
+
+.inline{
+    display: inline;
+}
+
+
+a{
+    float:right;
+    padding-right: 100px;
+}
+

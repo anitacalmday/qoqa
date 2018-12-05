@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MiddlewareService } from '../services/middleware.service';
+
 import { Event } from '../data/events';
 
 
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
+  
 
 }
 

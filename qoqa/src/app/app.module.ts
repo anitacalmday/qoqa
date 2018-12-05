@@ -28,6 +28,7 @@ import { LoginComponent } from './login/login.component';
 import { AllMaterialModule } from './material-module';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { FormsModule } from "@angular/forms";
+import { FillQoqaComponent } from './fill-qoqa/fill-qoqa.component';
 
 
 
@@ -44,7 +45,8 @@ import { FormsModule } from "@angular/forms";
     InvitationsComponent,
     CreateQoqaComponent,
     AppMainNavComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    FillQoqaComponent
   ],
   imports: [
     BrowserModule,
