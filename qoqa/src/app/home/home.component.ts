@@ -26,13 +26,9 @@ export class HomeComponent implements OnInit {
   }
 
   // displayedColumns = [];
-  
-  CreateQoqa(){
-  this.router.navigate(['create-qoqa'])
-  // // Todo: must find way to effectively call joinEvent specifying which event (which leads to a qoqa) to later display a specific qoqa
-  // joinEvent(event: Event) {
-  //   sessionStorage.setItem('event', JSON.stringify(event));
-  //   this.router.navigate(['/fill-qoqa']);
-  // }
-}
+
+  joinEvent(event: Event) {
+     sessionStorage.setItem('event', JSON.stringify(event));
+     this.router.navigate(['/fill-qoqa']);
+  }
 }

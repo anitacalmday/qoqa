@@ -28,6 +28,8 @@ export class MiddlewareService {
 
   AddQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/').set(qoqa.qoqaID, qoqa); }
 
+  AddQoqaResponse(qoqaId: string, uid: string, list: string[]): void { this.database.list('/qoqas/' + qoqaId + '/responses/').set(uid, list); }
+
   getEvents(onComplete) {
     this.database.list('/events/').valueChanges().subscribe(data => {
       // console.log(data)
@@ -72,10 +74,17 @@ export class MiddlewareService {
   }
   getQoqa(qoqaId: String, onComplete) {
     this.database.list('/qoqas/' + qoqaId).valueChanges().subscribe(data => {
-      // console.log(data)
-      onComplete(data)
+      console.log(data[2])
+      onComplete(data);
     },
     error => { console.log('problem loading qoqa list ' + error) });
+  }
+  getQuestions(qoqaId: String, onComplete) {
+    this.database.list('/qoqas/' + qoqaId).valueChanges().subscribe(data => {
+        console.log(data[2]);
+        onComplete(data[2]);
+      },
+      error => { console.log('problem loading qoqa list ' + error) });
   }
 
   addInvite(eventId: string, userId: string) {

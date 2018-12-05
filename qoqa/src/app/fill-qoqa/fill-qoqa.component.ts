@@ -23,6 +23,7 @@ export class FillQoqaComponent implements OnInit {
   title = '';
   qoqa = new Qoqa();
   event = new Event();
+  qoqaID = '';
   constructor(private data: MiddlewareService, private router: Router) {
     this.event = JSON.parse(sessionStorage.getItem('event'));
     this.title = this.event.title;
@@ -32,6 +33,7 @@ export class FillQoqaComponent implements OnInit {
         console.log('qoqa event id: ' + qoqa.eventID);
         if (qoqa.eventID === this.event.eventID) {
           console.log(qoqa.qoqaID);
+          this.qoqaID = qoqa.qoqaID;
           this.fillForm(qoqa.qoqaID);
         }
       }
@@ -42,23 +44,29 @@ export class FillQoqaComponent implements OnInit {
   ngOnInit() {
   }
   fillForm(qoqaID: string) {
-    this.data.getQoqa(qoqaID, (qoqa) => {
-      this.qoqa = qoqa;
-      console.log('qoqa object inside fillForm(): ' + qoqa);
-      // Todo: fix line above! currently showing qoqa object not to be properly populated
-      this.title = this.event.title;
-      this.question1 = this.qoqa.questions[0].prompt;
-      this.question2 = this.qoqa.questions[1].prompt;
-      this.question3 = this.qoqa.questions[2].prompt;
-      this.question4 = this.qoqa.questions[3].prompt;
-      this.question5 = this.qoqa.questions[4].prompt;
+    this.data.getQuestions(qoqaID, (data) => {
+      console.log(data[0].prompt);
+      this.question1 = data[0].prompt;
+      this.question2 = data[1].prompt;
+      this.question3 = data[2].prompt;
+      this.question4 = data[3].prompt;
+      this.question5 = data[4].prompt;
     })
+    this.title = this.event.title;
   }
   submit() {
-    this.qoqa.questions[0].response.push(this.response1);
+    var responses = [];
+    responses.push(this.response1);
+    responses.push(this.response2);
+    responses.push(this.response3);
+    responses.push(this.response4);
+    responses.push(this.response5);
+    this.data.AddQoqaResponse(this.qoqaID, sessionStorage.getItem('uid'), responses);
+    /*this.qoqa.questions[0].response.push(this.response1);
     this.qoqa.questions[1].response.push(this.response2);
     this.qoqa.questions[2].response.push(this.response3);
     this.qoqa.questions[3].response.push(this.response4);
-    this.qoqa.questions[4].response.push(this.response5);
+    this.qoqa.questions[4].response.push(this.response5);*/
+    this.router.navigate(['/home']);
   }
 }

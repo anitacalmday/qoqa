@@ -28,7 +28,7 @@ export class InvitationsComponent implements OnInit {
     })
   }
   accept() {
-    this.router.navigate(['/invitations']);
+    this.router.navigate(['/create-qoqa']);
   }
   decline(eventId: string) {
     console.log('decline called!');
