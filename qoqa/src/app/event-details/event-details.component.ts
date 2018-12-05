@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Qoqa } from '../data/qoqa';
 
 @Component({
   selector: 'app-event-details',

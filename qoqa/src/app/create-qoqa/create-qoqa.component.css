@@ -3,15 +3,42 @@ h3 {
     padding: 5%;
 }
 
-.card-deck {
+.btn-primary {
+    position: relative;
 
-    display: table-cell;
-    width: 50%;
-    table-layout: fixed;
-    
+}
+
+.card-text{
+    padding-bottom: 10px;
 }
 .card {
     height: auto;
     width: auto;
-    padding-bottom: 5%;
+    padding-bottom: 10px;
+    text-align: center;
 }
+
+.card-title{
+    padding-bottom: 10px;
+}
+
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+
+.container{
+    text-align: center;
+}
+
+form{
+    padding-bottom: 50px;
+}
+

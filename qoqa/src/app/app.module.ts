@@ -31,6 +31,7 @@ import { FormsModule } from "@angular/forms";
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,7 @@ import { FormsModule } from "@angular/forms";
     InvitationsComponent,
     CreateQoqaComponent,
     AppMainNavComponent,
-    EventDetailsComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,
