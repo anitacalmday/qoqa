@@ -18,14 +18,6 @@ export class MiddlewareService {
 
   constructor(public database: AngularFireDatabase) {}
 
-  getEvents(onComplete) {
-	  this.database.list('/events').valueChanges().subscribe(data => {
-      // console.log(data)
-      onComplete(data)
-  	},
-    error => { console.log('problem loading event list ' + error) });
-  }
-
   AddUser(user: User): void { this.database.list('/users/').set(user.uid, user); }
 
   AddIndividualUser(user: Individual): void { this.database.list('/users/individuals/').set(user.uid, user); }
@@ -36,12 +28,19 @@ export class MiddlewareService {
 
   AddQoqa(qoqa: Qoqa): void { this.database.list('/qoqas/').set(qoqa.qoqaID, qoqa); }
 
-  getEvents(eventId, onComplete) {
-    this.database.list('/events/' + eventId).valueChanges().subscribe(data => {
+  getEvents(onComplete) {
+    this.database.list('/events/').valueChanges().subscribe(data => {
       // console.log(data)
       onComplete(data)
     },
     error => { console.log('problem loading event list ' + error) });
+  }
+  getEvent(eventId: String, onComplete) {
+    this.database.list('/users/' + eventId).valueChanges().subscribe(data => {
+        // console.log(data)
+        onComplete(data)
+      },
+      error => { console.log('problem loading user list ' + error) });
   }
   getUser(uid: String, onComplete) {
     this.database.list('/users/' + uid).valueChanges().subscribe(data => {
@@ -72,11 +71,64 @@ export class MiddlewareService {
     error => { console.log('problem loading qoqa list ' + error) });
   }
 
+  addInvite(eventId: string, userId: string) {
+    this.getIndividual(userId, (user) => {
+      console.log(user);
+      if (this.isEmptyObject(user)) {
+        this.database.list('/users/organizations/' + userId + '/invitations').push(eventId)
+      } else {
+        this.database.list('/users/individuals/' + userId + '/invitations').push(eventId)
+      }
+    })
+  }
+
+  declineInvite(eventId: string, userId: string) {
+    this.getIndividual(userId, (user) => {
+      console.log(user);
+      if (this.isEmptyObject(user)) {
+        this.database.list('/users/organizations/' + userId + '/invitations').remove(eventId)
+      } else {
+        this.database.list('/users/individuals/' + userId + '/invitations').remove(eventId)
+      }
+    })
+  }
+
+  getInvites(userId: string, onComplete): string[] {
+    var invitations = [];
+    this.getIndividual(userId, (user) => {
+      console.log(user);
+      if (this.isEmptyObject(user)) {
+        this.database.list('/users/organizations/' + userId + '/invitations').valueChanges().subscribe(data => {
+            // console.log(data)
+            invitations = data;
+            onComplete(invitations);
+          },
+          error => { console.log('problem loading individual list ' + error) });
+      } else {
+        this.database.list('/users/individuals/' + userId + '/invitations').valueChanges().subscribe(data => {
+            // console.log(data)
+            invitations = data;
+            onComplete(invitations);
+          },
+          error => { console.log('problem loading individual list ' + error) });
+      }
+    })
+    return invitations;
+  }
+
+  isEmptyObject(obj): boolean {
+    for(var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        return false;
+      }
+    } return true;
+  }
+
   UpdateUser(user: User): void { this.database.list('/users/').update(user.uid, { 'email': user.email, 'phoneNumber': user.phoneNumber}); }
 
   UpdateIndividual(user: Individual): void { this.database.list('/users/individuals/').update(user.uid, user); }
 
-  UpdateOrganization(user: Organization): void { this.database.list('/users/organizations/').update(user.uid, user); }
+  UpdateOrganization(user: Organization): void { this.database.list('/users/organizations/').set(user.uid, user); }
 
   UpdateEvent(event: Event): void { this.database.list('/events/').update(event.eventID, event); }
 
@@ -103,7 +155,6 @@ export class MiddlewareService {
     organization.organization = true;
     console.log('Organization instance: ' + organization);
     this.AddOrganizationUser(organization);
-    this.setOrganization(organization);
     var user = new User;
     user.uid = uid;
     user.phoneNumber = phoneNumber;
@@ -120,19 +171,31 @@ export class MiddlewareService {
     individual.phoneNumber = user.phoneNumber;
     individual.organization = false;
     this.AddIndividualUser(individual);
-    this.setIndividual(individual);
     this.DeleteUser(user);
   }
 
 
   IsNewUser(uid: String, onComplete) {
-    var found = true
-    this.database.list('users').valueChanges().subscribe(data => {
+    var found = false;
+    this.getIndividual(uid, (user) => {
+      console.log(user);
+      if (this.isEmptyObject(user)) {
+        this.getOrganization(uid, (user1) => {
+          if (this.isEmptyObject(user1)) {
+            onComplete();
+          }
+        });
+        onComplete();
+      } else {
+        found = true;
+      } onComplete(found);
+    })
+    /*this.database.list('users').valueChanges().subscribe(data => {
       // console.log(data)
       for (var i = 0; i < data.length; i++) {
         // console.log(data[i])
         if (data[i]['uid'] == uid) {
-          found = false
+          found = true
           // console.log('it is working it seems')
         }
         // console.log(data[i].uid)
@@ -140,6 +203,6 @@ export class MiddlewareService {
       }
       onComplete(found)
     },
-    error => { console.log(error) });
+    error => { console.log(error) });*/
   }
 }

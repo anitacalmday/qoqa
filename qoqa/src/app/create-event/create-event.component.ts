@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MiddlewareService } from "../services/middleware.service";
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Event } from "../data/events";
+import { Time } from "@angular/common";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-create-event',
@@ -10,10 +12,44 @@ import { Event } from "../data/events";
 })
 export class CreateEventComponent implements OnInit {
   event = new Event;
-  constructor(private database: AngularFireDatabase, private data: MiddlewareService) { }
+  title = '';
+  location1 = '';
+  date = new Date();
+  time: Time;
+  host = '';
+  eventCount = 0;
+
+  constructor(public database: AngularFireDatabase, private data: MiddlewareService, private router: Router) { }
 
   ngOnInit() { }
-
-  CreateEvent(event: Event): void { this.data.AddEvent(event); }
+  CreateEvent(): void {
+    this.data.getEvents((data) => {
+      for(var i = 0; i<data.length; i++) {
+        this.eventCount = this.eventCount + 1;
+      }
+    });
+    if (parseInt(sessionStorage.getItem('isOrg'))) {
+      this.data.getOrganization(sessionStorage.getItem('uid'), (organization) => {
+        console.log(organization);
+        this.event.organizer = organization;});
+    } else {
+      this.data.getIndividual(sessionStorage.getItem('uid'), (individual) => {
+        console.log(individual);
+        this.event.organizer = individual;})
+    }
+    this.event.qoqas = [];
+    this.event.host = this.host.split(" ");
+    for(var i = 0; i<this.host.split(" ").length; i++) {
+      this.data.addInvite(this.eventCount.toString(), this.host.split(" ")[i]);
+    }
+    this.event.location = this.location1;
+    this.event.title = this.title;
+    this.event.attendees = [];
+    this.event.date = this.date;
+    this.event.time = this.time;
+    this.event.eventID = this.eventCount.toString();
+    this.data.AddEvent(this.event);
+    this.router.navigate(['create-qoqa']);
+  }
 
 }

@@ -4,45 +4,13 @@
 <table class="table">
 
   <tbody>
-    <tr>
+    <tr *ngFor="let event of events">
       <th scope="row">Logo</th>
-      <td>Event Name</td>
-      <td>Event Date and Time</td>
-      <td>Event Venue</td>
-      <td><button type="button" name="accept">Accept</button></td>
-      <td><button type="button" name="decline">Decline</button></td>
-    </tr>
-    <tr>
-      <th scope="row">Logo</th>
-      <td>Event Name</td>
-      <td>Event Date and Time</td>
-      <td>Event Venue</td>
-      <td><button type="button" name="accept">Accept</button></td>
-      <td><button type="button" name="decline">Decline</button></td>
-    </tr>
-    <tr>
-      <th scope="row">Logo</th>
-      <td>Event Name</td>
-      <td>Event Date and Time</td>
-      <td>Event Venue</td>
-      <td><button type="button" name="accept">Accept</button></td>
-      <td><button type="button" name="decline">Decline</button></td>
-    </tr>
-    <tr>
-      <th scope="row">Logo</th>
-      <td>Event Name</td>
-      <td>Event Date and Time</td>
-      <td>Event Venue</td>
-      <td><button type="button" name="accept">Accept</button></td>
-      <td><button type="button" name="decline">Decline</button></td>
-    </tr>
-    <tr>
-      <th scope="row">Logo</th>
-      <td>Event Name</td>
-      <td>Event Date and Time</td>
-      <td>Event Venue</td>
-      <td><button type="button" name="accept">Accept</button></td>
-      <td><button type="button" name="decline">Decline</button></td>
+      <td>{{event.title}}</td>
+      <td>{{event.date}}</td>
+      <td>{{event.location}}</td>
+      <td><button type="button" name="accept" (click)="accept()">Accept</button></td>
+      <td><button type="button" name="decline" (click)="decline(event.eventID)">Decline</button></td>
     </tr>
   </tbody>
 </table>

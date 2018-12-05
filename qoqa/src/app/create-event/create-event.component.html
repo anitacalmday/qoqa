@@ -14,17 +14,17 @@
   <form>
 
     <div class="form-group">
-      <label for="eventName">Event Title</label>
-      <input type="text" class="form-control" id="EventName"  placeholder="Give it a short distinct name">
+      <label name="eventTitle" for="eventName">Event Title</label>
+      <input [(ngModel)]="title" name="titleBox" type="text" class="form-control" id="EventName"  placeholder="Give it a short distinct name">
     </div>
     <div class="form-group">
-      <label for="eventName">Location</label>
-      <input type="text" class="form-control" id="EventLocation"  placeholder="Enter a venue or address">
+      <label name="eventLocation" for="EventLocation">Location</label>
+      <input [(ngModel)]="location1" name="locationBox" type="text" class="form-control" id="EventLocation"  placeholder="Enter a venue or address">
     </div>
     <div class="form-group">
       <label for="Starts">Starts</label>
-      <input type="date" class="form-control" id="EventStartDate">
-      <input type="time" class="form-control" id="EventStartTime">
+      <input [(ngModel)]="date" name="startDate" type="date" class="form-control" id="EventStartDate">
+      <input [(ngModel)]="time" name="startTime" type="time" class="form-control" id="EventStartTime">
     </div>
     <div class="form-group">
       <label for="Ends">Ends</label>
@@ -40,13 +40,13 @@
       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
     <div class="form-group">
-      <label for="eventOrg">Organizer Name</label>
-      <input type="text" class="form-control" id="eventOrganizer">
+      <label for="eventOrg">Send Invitations to Host (separate uid's by single space)</label>
+      <input [(ngModel)]="host" name="hostBox" type="text" class="form-control" id="eventOrganizer">
     </div>
     <div class="form-group">
       <label for="eventOrgDesc">Organizer Description</label>
       <textarea class="form-control" id="eventOrgDescription" rows="3"></textarea>
     </div>
-     <button type="submit" class="btn btn-primary">Make Your Event Live</button>
+     <button type="submit" class="btn btn-primary" (click)="CreateEvent()">Make Your Event Live</button>
   </form>
 </div>

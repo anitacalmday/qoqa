@@ -36,4 +36,6 @@ export class Organization extends User {
   address: string;
   upcomingEvent: Event[];
   qoqaHistory: Qoqa[];
+  invitations: string[];
+  organizationTruth = 1;
 }

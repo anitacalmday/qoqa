@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../data/user';
+import { Router } from "@angular/router";
+import { Organization } from "../data/organization";
+import { Individual } from "../data/individual";
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MiddlewareService } from "../services/middleware.service";
 
@@ -9,48 +12,39 @@ import { MiddlewareService } from "../services/middleware.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user = new User;
+  user = new User();
   email = '';
   firstName = '';
   lastName = '';
   title = '';
-  organization = false;
+  orgTruth = false;
+  organization = new Organization();
+  individual = new Individual();
   phoneNumber = '';
   dob = '';
   address = '';
   invalidEntry = false;
 
-  constructor(public database: AngularFireDatabase, private data: MiddlewareService) {
-    // this.data.user.uid
+  constructor(public database: AngularFireDatabase, private data: MiddlewareService, private router: Router) {
   }
 
   ngOnInit() {
-    //this.data.user = this.data.getUser();
   }
-  // todo: fix saveChanges() call in profile.component.html
   saveChanges() {
-    console.log('REACCHHEDDD SAVECHANGES!');
     this.invalidEntry = false;
     var user = new User;
-
     user.uid = sessionStorage.getItem('uid');
     console.log(user.uid);
-    // console.log(this.data.user.uid)
-    // user.uid = this.data.user.uid;
     this.data.getUser(user.uid, (user) => {
-      console.log(user)
+      console.log(user);
       this.user = user
-    })
-    // this.data.getUser(user.uid)
+    });
     console.log(this.user.uid);
     user.phoneNumber = this.user.phoneNumber;
     user.email = this.user.email;
-
-    console.log(this.organization); //displays toggle truth
-
-    user.organization = this.organization;
+    console.log(this.orgTruth); //displays toggle truth
+    user.organization = this.orgTruth;
     console.log(user.organization); //organizer truth for user
-
     user.email = this.email;
     user.phoneNumber = this.phoneNumber;
     user.eventHistory = [];
@@ -58,7 +52,11 @@ export class ProfileComponent implements OnInit {
     if (this.organization) {
       console.log('inside if!');
       this.data.MakeUserOrganization(user.uid, user.email, user.phoneNumber, user.eventHistory);
-      var organization = this.data.getOrganization();
+      var organization = new Organization();
+      this.data.getOrganization(user.uid, (organization) => {
+        console.log(organization);
+        this.organization = organization;
+      });
       organization.title = this.title;
       organization.email = this.email;
       organization.address = this.address;
@@ -67,24 +65,30 @@ export class ProfileComponent implements OnInit {
       if (this.invalidEntry) {
         //do not save
       } else {
-        this.data.UpdateOrganization(organization);
+        sessionStorage.setItem('isOrg', '1');
+        this.data.DeleteUser(user);
+        this.router.navigate(['/home']);
       }
     } else {
       console.log('inside else!');
       this.data.MakeUserIndividual(user);
-      var individual = this.data.getIndividual();
+      var individual = new Individual();
+      this.data.getIndividual(user.uid, (individual) => {
+        console.log(individual);
+        this.individual = individual;});
       individual.firstName = this.firstName;
       individual.lastName = this.lastName;
       individual.dob = this.dob;
       individual.phoneNumber = this.phoneNumber;
       individual.email = this.email;
       this.invalidEntry = (individual.firstName || individual.email || individual.lastName || individual.phoneNumber || individual.dob) === ('' || ' ');
-      if (this.invalidEntry) {
-        //do not save
+      if (this.invalidEntry) { //do not save
       } else {
-        this.data.UpdateIndividual(individual);
+        sessionStorage.setItem('isOrg', '0');
+        this.data.DeleteUser(user);
+        this.router.navigate(['/home']);
       }
     }
   }
-
+  cancelChanges() { this.router.navigate(['/home']); }
 }

@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   events = null;
 
   constructor(private data: MiddlewareService) {
-  	data.getEvents((eventsList) => {
+  	this.data.getEvents( (eventsList) => {
       console.log(eventsList)
       this.events = eventsList
     })

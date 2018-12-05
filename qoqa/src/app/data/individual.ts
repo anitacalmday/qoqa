@@ -23,4 +23,6 @@ export class Individual extends User {
   lastName: string;
   dob: string;
   saved_events: Event[];
+  invitations: string[];
+  organizationTruth = 0;
 }

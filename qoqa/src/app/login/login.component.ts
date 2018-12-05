@@ -45,13 +45,13 @@ export class LoginComponent implements OnInit {
               newUser.phoneNumber = '';
               this.data.AddUser(newUser);
               this.isNewUser = true;
-              this.data.setUser(newUser);
-              sessionStorage.setItem('uid', this.data.user.uid);
+              sessionStorage.setItem('uid', newUser.uid);
               this.router.navigate(['profile'])
             } else {
               if (this.isNewUser) {
                 this.router.navigate(['profile'])
               } else {
+                sessionStorage.setItem('uid', res['user']['uid']);
                 this.router.navigate(['home'])
               }
             }

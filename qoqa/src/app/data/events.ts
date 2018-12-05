@@ -1,5 +1,4 @@
 import { User } from './user';
-import { Location} from "@angular/common";
 import { Time } from "@angular/common";
 import { Qoqa } from './qoqa';
 
@@ -7,9 +6,10 @@ export class Event {
   title: string;
   eventID: string;
   organizer: User;
-  host: User;
-  location: Location;
+  host: string[];
+  location: string;
+  date: Date;
   time: Time;
-  qoqas: Qoqa;
+  qoqas: Qoqa[];
   attendees: User[];
 }
