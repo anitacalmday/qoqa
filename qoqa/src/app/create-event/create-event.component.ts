@@ -17,6 +17,7 @@ export class CreateEventComponent implements OnInit {
   date = new Date();
   time: Time;
   host = '';
+  description = '';
   eventCount = 0;
 
   constructor(public database: AngularFireDatabase, private data: MiddlewareService, private router: Router) {
@@ -49,6 +50,7 @@ export class CreateEventComponent implements OnInit {
     this.event.attendees = [];
     this.event.date = this.date;
     this.event.time = this.time;
+    this.event.description = this.description;
     this.event.eventID = this.eventCount.toString();
     this.data.AddEvent(this.event);
     this.router.navigate(['create-qoqa']);

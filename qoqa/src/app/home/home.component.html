@@ -24,17 +24,25 @@
           <th>Location</th>
           <th>Date</th>
           <th>Time</th>
-          <th>Button(th will be removed)</th>
         </tr>
     
-        <tr *ngFor="let event of events">
-          <td>{{event.title}}</td>
-          <td>{{event.location}}</td>
-          <td>{{event.date}}</td>
-          <td>{{event.time}}</td>
+        <!-- <tr *ngFor="let event of events"> -->
+         <tr *ngFor="let event of events">
+          <!-- <mat-accordion> -->
+            <mat-expansion-panel >
+            <mat-expansion-panel-header >
+          <mat-panel-title>{{event.title}}</mat-panel-title>
+          <mat-panel-title>{{event.location}}</mat-panel-title>
+          <mat-panel-title>{{event.date}}</mat-panel-title>
+          <mat-panel-title>{{event.time}}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <td>{{event.description}}</td>
+        
           <td><button mat-button-raised color="primary">Click me to Join Event</button></td>
-        </tr>
-
+        <!-- </tr> -->
+      </mat-expansion-panel>
+      <!-- </mat-accordion> -->
+</tr>
     
 
 
@@ -51,5 +59,21 @@
 
 
   </body>
+
+
+
+<!-- 
+  <mat-expansion-panel (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false">
+<mat-expansion-panel-header>
+<mat-panel-title>
+Self aware panel
+</mat-panel-title>
+<mat-panel-title>
+Currently I am
+</mat-panel-title>
+</mat-expansion-panel-header>
+<p>I'm visible because I am open</p>
+</mat-expansion-panel> -->
 
 

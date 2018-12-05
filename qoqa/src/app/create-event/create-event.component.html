@@ -36,9 +36,9 @@
       <input type="file" class="form-control-file" id="EventImage" accept="image/png, image/jpeg">
     </div>
     <div class="form-group">
-      <label for="eventDescription">Event Description</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
+        <label name="eventDescription" for="eventDescription">Event Description</label>
+        <input [(ngModel)]="description" name="descriptionBox" type="text" class="form-control" id="eventDescription"  placeholder="Tell us more">
+      </div>
     <div class="form-group">
       <label for="eventOrg">Send Invitations to Host (separate uid's by single space)</label>
       <input [(ngModel)]="host" name="hostBox" type="text" class="form-control" id="eventOrganizer">

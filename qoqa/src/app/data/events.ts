@@ -10,6 +10,7 @@ export class Event {
   location: string;
   date: Date;
   time: Time;
+  description: string;
   qoqas: Qoqa[];
   attendees: User[];
 }
