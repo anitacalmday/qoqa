@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MiddlewareService} from "../services/middleware.service";
 import { Router } from '@angular/router';
-import { Event } from '../data/events';
 
 @Component({
   selector: 'app-invitations',
@@ -9,29 +8,33 @@ import { Event } from '../data/events';
   styleUrls: ['./invitations.component.css']
 })
 export class InvitationsComponent implements OnInit {
-  events = null;
+  events = [];
 
   constructor(private data: MiddlewareService, private router: Router) {
-    this.data.getInvites(sessionStorage.getItem('uid'), invitations => {
-      var invitationList = invitations;
-      this.events = invitationList;
-      console.log('Invitations: ' + invitationList);
-      for(let invite of invitationList) {
-        this.data.getEvent(invite, (event) => {
-          var currEvent = new Event();
-          currEvent = event;
-          this.events.push(currEvent);
-        })
-      }
-    })
+    this.populateInvitations();
   }
   ngOnInit() {
+  }
+  populateInvitations() {
+    this.events = [];
+    this.data.getEvents( (eventsList) => {
+      console.log(eventsList);
+      for(var i=0; i<eventsList.length; i++) {
+        console.log("event of Event List: " + eventsList[i]);
+        if (eventsList[i].host === sessionStorage.getItem('uid')) {
+          this.events.push(eventsList[i]);
+        }
+      }
+    })
   }
   accept() {
     this.router.navigate(['/invitations']);
   }
   decline(eventId: string) {
+    console.log('decline called!');
+    console.log('eventId being deleted from invitations: ' + eventId);
     this.data.declineInvite(eventId, sessionStorage.getItem('uid'));
-    this.router.navigate(['/invitations']);
+    this.populateInvitations();
+    // this.router.navigate(['/invitations']);
   }
 }

@@ -33,32 +33,33 @@ export class LoginComponent implements OnInit {
   signInWithGoogle() {
     if (this.attempted == false) {
       this.authService.GoogleSignIn()
-      .then((res) => {
-        if (res != null) {
-          this.data.IsNewUser(res['user']['uid'], (isNewUser) => {
-            if (isNewUser) {
-              this.isNewUser = true;
-              let newUser = new User();
-              newUser.uid = res['user']['uid'];
-              newUser.email = res['user']['email'];
-              newUser.eventHistory = [ ];
-              newUser.phoneNumber = '';
-              this.data.AddUser(newUser);
-              this.isNewUser = true;
-              sessionStorage.setItem('uid', newUser.uid);
-              this.router.navigate(['profile'])
-            } else {
-              if (this.isNewUser) {
+        .then((res) => {
+          if (res != null) {
+            this.data.IsNewUser(res['user']['uid'], (isNewUser) => {
+              console.log(isNewUser)
+              if (isNewUser) {
+                this.isNewUser = true;
+                let newUser = new User();
+                newUser.uid = res['user']['uid'];
+                newUser.email = res['user']['email'];
+                newUser.eventHistory = [ ];
+                newUser.phoneNumber = '';
+                this.data.AddUser(newUser);
+                this.isNewUser = true;
+                sessionStorage.setItem('uid', newUser.uid);
                 this.router.navigate(['profile'])
               } else {
-                sessionStorage.setItem('uid', res['user']['uid']);
-                this.router.navigate(['home'])
+                if (this.isNewUser) {
+                  this.router.navigate(['profile'])
+                } else {
+                  sessionStorage.setItem('uid', res['user']['uid']);
+                  this.router.navigate(['home'])
+                }
               }
-            }
-          })
-        }
-      })
-      .catch((err) => console.log(err + "ERROR"));
+            })
+          }
+        })
+        .catch((err) => console.log(err + "ERROR"));
       this.attempted = true
     }
     else {

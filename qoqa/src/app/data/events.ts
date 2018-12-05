@@ -6,7 +6,7 @@ export class Event {
   title: string;
   eventID: string;
   organizer: User;
-  host: string[];
+  host: string;
   location: string;
   date: Date;
   time: Time;
