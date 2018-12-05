@@ -35,6 +35,13 @@ export class MiddlewareService {
     },
     error => { console.log('problem loading event list ' + error) });
   }
+  getQoqas(onComplete) {
+    this.database.list('/qoqas/').valueChanges().subscribe(data => {
+        // console.log(data)
+        onComplete(data)
+      },
+      error => { console.log('problem loading qoqa list ' + error) });
+  }
   getEvent(eventId: String, onComplete) {
     this.database.list('/events/' + eventId).valueChanges().subscribe(data => {
         // console.log(data)

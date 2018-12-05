@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { MiddlewareService } from '../services/middleware.service';
 import { Router } from "@angular/router";
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {MatTreeModule} from '@angular/material';
 
 import { Event } from '../data/events';
-
 
 @Component({
   selector: 'app-home',
@@ -31,6 +29,10 @@ export class HomeComponent implements OnInit {
   
   CreateQoqa(){
   this.router.navigate(['create-qoqa'])
-  }
+  // // Todo: must find way to effectively call joinEvent specifying which event (which leads to a qoqa) to later display a specific qoqa
+  // joinEvent(event: Event) {
+  //   sessionStorage.setItem('event', JSON.stringify(event));
+  //   this.router.navigate(['/fill-qoqa']);
+  // }
 }
-
+}

@@ -7,29 +7,35 @@
 
 
   <form>
+    <mat-form-field class="example-full-width">
+      <input [(ngModel)]="title" name="titleBox" matInput placeholder="Qoqa Title">
+    </mat-form-field>
       <mat-form-field class="example-full-width">
-          <input matInput placeholder="Question 1">
+          <input [(ngModel)]="question1" name="q1Box" matInput placeholder="Question 1">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Question 2">
+            <input [(ngModel)]="question2" name="q2Box" matInput placeholder="Question 2">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-              <input matInput placeholder="Question 3">
+              <input [(ngModel)]="question3" name="q3Box" matInput placeholder="Question 3">
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Question 4">
+                <input [(ngModel)]="question4" name="q4Box" matInput placeholder="Question 4">
               </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input [(ngModel)]="question5" name="q5Box" matInput placeholder="Question 5">
+            </mat-form-field>
 
 
               <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Question 5">
+                  <input [(ngModel)]="eventID" name="eventBox" matInput placeholder="Event ID">
                 </mat-form-field>
   </form>
-  
-  <button mat-raised-button color="primary">Create Qoqa</button>
+
+  <button mat-raised-button color="primary" name="createQoqa" (click)="createQoqa()">Create Qoqa</button>
 
 </div>
 

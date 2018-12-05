@@ -2,33 +2,32 @@
 
 <div class="container">
     <h3>[Enter name of event here] Qoqa</h3>
-  
-  
+
+
     <form>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Question 1">
+            <input [(ngModel)]="response1" name="res1" matInput placeholder=question1>
           </mat-form-field>
-  
+
           <mat-form-field class="example-full-width">
-              <input matInput placeholder="Question 2">
+              <input [(ngModel)]="response2" name="res2" matInput placeholder=question2>
             </mat-form-field>
-  
+
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Question 3">
+                <input [(ngModel)]="response3" name="res3" matInput placeholder=question3>
               </mat-form-field>
-  
+
               <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Question 4">
+                  <input [(ngModel)]="response4" name="res4" matInput placeholder=question4>
                 </mat-form-field>
-  
-  
+
+
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Question 5">
+                    <input [(ngModel)]="response5" name="res5" matInput placeholder=question5>
                   </mat-form-field>
     </form>
-    
-    <button mat-raised-button color="primary">Submit</button>
-  
+
+    <button mat-raised-button color="primary" name="submission" (click)="submit()">Submit</button>
+
   </div>
-  
-  
+
